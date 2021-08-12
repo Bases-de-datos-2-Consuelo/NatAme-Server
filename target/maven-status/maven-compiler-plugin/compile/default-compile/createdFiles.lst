@@ -1,0 +1,3 @@
+negocio\Principal.class
+com\servidor\natame\server\JAXRSConfiguration.class
+com\servidor\natame\server\resources\JavaEE8Resource.class
