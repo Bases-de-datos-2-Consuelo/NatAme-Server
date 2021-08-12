@@ -39,7 +39,7 @@ public class ServidorPrueba extends HttpServlet {
 
             Principal p = new Principal();
             p.agregarPrefijo(request.getParameter("nombre"), request.getParameter("apellido"), request.getParameter("edad"));
-            System.out.println("Hola mundo"+request.getParameter("nombre"));
+            System.out.println("Hola mundo" + request.getParameter("nombre"));
             /* TODO output your page here. You may use following sample code. */
             out.println("[");
             out.println("{");
