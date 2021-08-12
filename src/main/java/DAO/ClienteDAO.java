@@ -23,7 +23,7 @@ public class ClienteDAO {
 
     public String agregarCliente(Connection conn) {
         PreparedStatement pst = null;
-        String sql = "INSERT INTO CLIENTE VALUES(12345,'William','Nicolas','Buitrago','Camacho', 'CC', '1233506653','calle 37 a sur #91-20','Bogota','nicolas.buitrago@gmail.com','3123502244');";
+        String sql = "INSERT INTO CLIENTE VALUES(311,'Luis','Miguel','Pérez','Valderrama', 'CC', '123456','carrera 9 #20-50','Bogota','miguel@gmail.com','3103506598')";
 
         try {
             pst = conn.prepareStatement(sql);

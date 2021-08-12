@@ -8,7 +8,6 @@ package conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,29 +26,28 @@ public class Conexion {
             conn = DriverManager.getConnection(url, user, password);
             //conn.setAutoCommit(false);
             if (conn != null) {
-                JOptionPane.showMessageDialog(null,"Conexión exitosa");
+                System.out.println("Conexión exitosa");
             } else {
-                JOptionPane.showMessageDialog(null,"Conexión no exitosa");
+                System.out.println("Conexión no exitosa");
             }
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error al conectar" + e);
+            System.out.println("Error al conectar" + e);
         }
 
         return conn;
     }
-    
-    public void desconexion(){
+
+    public void desconexion() {
         try {
             conn.close();
         } catch (Exception e) {
-            System.out.println("Error al desconectar"+e.getMessage());
+            System.out.println("Error al desconectar" + e.getMessage());
         }
- 
-          
+
     }
-    
+
     public static void main(String[] args) {
-        Conexion c=new Conexion();
+        Conexion c = new Conexion();
         c.getConnection();
     }
 

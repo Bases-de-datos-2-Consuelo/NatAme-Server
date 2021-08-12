@@ -5,12 +5,16 @@
  */
 package servidor;
 
+import DAO.ClienteDAO;
+import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import negocio.Principal;
 
 /**
@@ -32,14 +36,20 @@ public class ServidorPrueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
 
-        
         response.setHeader("Access-Control-Allow-Origin", "*");
+
+        Conexion c = new Conexion();
+
+        Connection co = c.getConnection();
+
+        ClienteDAO cdao = new ClienteDAO();
+        cdao.agregarCliente(co);
 
         try (PrintWriter out = response.getWriter()) {
 
             Principal p = new Principal();
             p.agregarPrefijo(request.getParameter("nombre"), request.getParameter("apellido"), request.getParameter("edad"));
-            System.out.println("Hola mundo" + request.getParameter("nombre"));
+
             /* TODO output your page here. You may use following sample code. */
             out.println("[");
             out.println("{");
