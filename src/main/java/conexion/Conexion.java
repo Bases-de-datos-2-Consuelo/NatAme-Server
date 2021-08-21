@@ -19,6 +19,11 @@ public class Conexion {
     private static String user = "natame";
     private static String password = "natame1234";
     private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+    
+    public Conexion(String user, String password){
+        this.user=user;
+        this.password=password;
+    }
 
     public static Connection getConnection() {
         try {
@@ -44,11 +49,6 @@ public class Conexion {
             System.out.println("Error al desconectar" + e.getMessage());
         }
 
-    }
-
-    public static void main(String[] args) {
-        Conexion c = new Conexion();
-        c.getConnection();
     }
 
 }

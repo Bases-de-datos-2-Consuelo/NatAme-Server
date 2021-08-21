@@ -9,21 +9,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import negocio.modelos.Cliente;
+import negocio.modelos.RepresentanteVentas;
 
 /**
  *
  * @author asus
  */
-public class ClienteDAO {
+public class RepresentanteVentasDAO {
 
     private String mensaje = "";
 
-    public ClienteDAO() {
+    public RepresentanteVentasDAO() {
     }
 
-    public String agregarCliente(Connection conn,Cliente cliente) {
+    public String agregarCliente(Connection conn,RepresentanteVentas representante) {
         PreparedStatement pst = null;
-        String sql = "INSERT INTO natame.CLIENTE VALUES("+cliente.getK_CLIENTE()+",'"+cliente.getN_NOMBRE1()+"','"+cliente.getN_NOMBRE2()+"','"+cliente.getN_APELLIDO1()+"','"+cliente.getN_APELLIDO2()+"', '"+cliente.getI_TIPO_DOCUMENTO()+"', '"+cliente.getQ_DOCUMENTO()+"','"+cliente.getN_DIRECCION()+"','"+cliente.getN_CIUDAD()+"','"+cliente.getN_CORREO()+"',"+cliente.getQ_TELEFONO()+")";
+        String sql = "INSERT INTO natame.CLIENTE VALUES("+representante.getK_REPRESENTANTE()+",'"+representante.getN_NOMBRE1()+"','"+representante.getN_NOMBRE2()+"','"+representante.getN_APELLIDO1()+"','"+representante.getN_APELLIDO2()+"', '"+representante.getI_TIPO_DOCUMENTO()+"', '"+representante.getQ_DOCUMENTO()+"','"+representante.getN_DIRECCION()+"','"+representante.getN_CIUDAD()+"','"+representante.getN_CORREO()+"',"+representante.getQ_TELEFONO()+")";
         System.out.println(sql);
 
         try {

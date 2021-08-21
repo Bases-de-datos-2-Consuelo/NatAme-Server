@@ -14,15 +14,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
-import negocio.Principal;
 import negocio.modelos.Cliente;
 
 /**
  *
  * @author asus
  */
-public class ServidorPrueba extends HttpServlet {
+public class NuevoCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,23 +36,23 @@ public class ServidorPrueba extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-        String user=request.getParameter("user");
-        String password=request.getParameter("password");
-        
-        Conexion c = new Conexion("nicolas","nicolas1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+        String user = request.getParameter("user");
+        String password = request.getParameter("password");
+
+        Conexion c = new Conexion("nicolas", "nicolas1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
 
         Connection co = c.getConnection();
 
         ClienteDAO cdao = new ClienteDAO();
-        Cliente cliente=new Cliente(Integer.parseInt(request.getParameter("K_CLIENTE")), request.getParameter("N_NOMBRE1"), request.getParameter("N_NOMBRE2"), request.getParameter("N_APELLIDO1"), request.getParameter("N_APELLIDO2"), request.getParameter("I_TIPO_DOCUMENTO"), request.getParameter("Q_DOCUMENTO"), request.getParameter("N_DIRECCION"), request.getParameter("N_CORREO"), request.getParameter("N_CIUDAD"), Integer.parseInt(request.getParameter("Q_TELEFONO")));
-        
-        String respuesta=cdao.agregarCliente(co,cliente);
+        Cliente cliente = new Cliente(Integer.parseInt(request.getParameter("K_CLIENTE")), request.getParameter("N_NOMBRE1"), request.getParameter("N_NOMBRE2"), request.getParameter("N_APELLIDO1"), request.getParameter("N_APELLIDO2"), request.getParameter("I_TIPO_DOCUMENTO"), request.getParameter("Q_DOCUMENTO"), request.getParameter("N_DIRECCION"), request.getParameter("N_CORREO"), request.getParameter("N_CIUDAD"), Integer.parseInt(request.getParameter("Q_TELEFONO")));
+
+        String respuesta = cdao.agregarCliente(co, cliente);
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("[");
             out.println("{");
-            out.println("\"respuesta\": \"" + respuesta + '"');
+            out.println("\"respuesta\": \"" + respuesta + '"'); 
             out.println("}");
             out.println("]");
 

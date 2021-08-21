@@ -4,9 +4,17 @@
         <servlet-name>ServidorPrueba</servlet-name>
         <servlet-class>servidor.ServidorPrueba</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NuevoCliente</servlet-name>
+        <servlet-class>servidor.NuevoCliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServidorPrueba</servlet-name>
         <url-pattern>/ServidorPrueba</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NuevoCliente</servlet-name>
+        <url-pattern>/NuevoCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
