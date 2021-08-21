@@ -23,7 +23,7 @@ public class ClienteDAO {
 
     public String agregarCliente(Connection conn,Cliente cliente) {
         PreparedStatement pst = null;
-        String sql = "INSERT INTO natame.CLIENTE VALUES("+cliente.getK_CLIENTE()+",'"+cliente.getN_NOMBRE1()+"','"+cliente.getN_NOMBRE2()+"','"+cliente.getN_APELLIDO1()+"','"+cliente.getN_APELLIDO2()+"', '"+cliente.getI_TIPO_DOCUMENTO()+"', '"+cliente.getQ_DOCUMENTO()+"','"+cliente.getN_DIRECCION()+"','"+cliente.getN_CIUDAD()+"','"+cliente.getN_CORREO()+"',"+cliente.getQ_TELEFONO()+")";
+        String sql = "INSERT INTO natame.CLIENTE VALUES("+cliente.getK_CLIENTE()+")";
         System.out.println(sql);
 
         try {

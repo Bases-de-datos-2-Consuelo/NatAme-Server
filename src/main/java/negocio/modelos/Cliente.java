@@ -7,7 +7,7 @@ package negocio.modelos;
 public class Cliente {
 
     String K_CLIENTE;
-    private String N_CIUDAD;
+    private String N_CIUDAD;//Comentario
     
 
     public Cliente() {

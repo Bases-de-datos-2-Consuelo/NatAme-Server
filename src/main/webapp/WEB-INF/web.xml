@@ -8,6 +8,14 @@
         <servlet-name>NuevoCliente</servlet-name>
         <servlet-class>servidor.NuevoCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NuevoRepresentante</servlet-name>
+        <servlet-class>servidor.NuevoRepresentante</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AgregarRepresentante</servlet-name>
+        <servlet-class>servidor.AgregarRepresentante</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServidorPrueba</servlet-name>
         <url-pattern>/ServidorPrueba</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>NuevoCliente</servlet-name>
         <url-pattern>/NuevoCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NuevoRepresentante</servlet-name>
+        <url-pattern>/nuevo-representante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarRepresentante</servlet-name>
+        <url-pattern>/agregar-representante</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
