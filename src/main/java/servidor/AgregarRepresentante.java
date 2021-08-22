@@ -40,7 +40,7 @@ public class AgregarRepresentante extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("password");
 
-        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+        Conexion c = new Conexion("admin1", "admin1"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
         Connection co = c.getConnection();
 
         RepresentanteVentasDAO representanteDAO = new RepresentanteVentasDAO();
