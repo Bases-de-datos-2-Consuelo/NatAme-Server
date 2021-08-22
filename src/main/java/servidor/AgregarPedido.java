@@ -5,7 +5,7 @@
  */
 package servidor;
 
-import DAO.ClienteDAO;
+import DAO.PedidoDAO;
 import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,15 +14,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
-import negocio.Principal;
-import negocio.modelos.Cliente;
+import negocio.modelos.Pedido;
 
 /**
  *
  * @author asus
  */
-public class ServidorPrueba extends HttpServlet {
+public class AgregarPedido extends HttpServlet {
+
+    String respuesta = "Hola";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +38,17 @@ public class ServidorPrueba extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-        String user=request.getParameter("user");
-        String password=request.getParameter("password");
-        
-        Conexion c = new Conexion("nicolas","nicolas1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+        String user = request.getParameter("user");
+        String password = request.getParameter("password");
 
+        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
         Connection co = c.getConnection();
 
-        ClienteDAO cdao = new ClienteDAO();
-        Cliente cliente=new Cliente();
-        
-        String respuesta=cdao.agregarCliente(co,cliente);
+        String[] productos = request.getParameterValues("K_PRODUCTO");
+
+        Pedido pedido = new Pedido();
+        PedidoDAO pedDAO = new PedidoDAO();
+        String respuesta = pedDAO.agregarPedido(co, pedido, productos);
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

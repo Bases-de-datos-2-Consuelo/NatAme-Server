@@ -16,6 +16,10 @@
         <servlet-name>AgregarRepresentante</servlet-name>
         <servlet-class>servidor.AgregarRepresentante</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AgregarPedido</servlet-name>
+        <servlet-class>servidor.AgregarPedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServidorPrueba</servlet-name>
         <url-pattern>/ServidorPrueba</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>AgregarRepresentante</servlet-name>
         <url-pattern>/agregar-representante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarPedido</servlet-name>
+        <url-pattern>/agregar-pedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,16 +10,16 @@ package negocio.modelos;
  * @author luisy
  */
 public class Pedido {
-    
-   int K_PEDIDO;
-   float V_TOTAL;
-   String F_FECHA_REALIZADO;
-   String I_ESTADO ;
-   String I_TIPO_PAGO;
-   int Q_CALIFICACION ;
-   String F_FECHA_PAGO;
-   String K_REALIZADO_POR;
-   String K_REALIZADO_PARA;
+
+    int K_PEDIDO;
+    float V_TOTAL;
+    String F_FECHA_REALIZADO;
+    String I_ESTADO;
+    String I_TIPO_PAGO;
+    int Q_CALIFICACION;
+    String F_FECHA_PAGO;
+    String K_REALIZADO_POR;
+    String K_REALIZADO_PARA;
 
     public Pedido() {
     }
@@ -107,7 +107,5 @@ public class Pedido {
     public void setK_REALIZADO_PARA(String K_REALIZADO_PARA) {
         this.K_REALIZADO_PARA = K_REALIZADO_PARA;
     }
-   
-   
-   
+
 }

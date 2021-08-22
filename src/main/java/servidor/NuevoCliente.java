@@ -44,7 +44,7 @@ public class NuevoCliente extends HttpServlet {
         Connection co = c.getConnection();
 
         ClienteDAO cdao = new ClienteDAO();
-        Cliente cliente = new Cliente(Integer.parseInt(request.getParameter("K_CLIENTE")), request.getParameter("N_NOMBRE1"), request.getParameter("N_NOMBRE2"), request.getParameter("N_APELLIDO1"), request.getParameter("N_APELLIDO2"), request.getParameter("I_TIPO_DOCUMENTO"), request.getParameter("Q_DOCUMENTO"), request.getParameter("N_DIRECCION"), request.getParameter("N_CORREO"), request.getParameter("N_CIUDAD"), Integer.parseInt(request.getParameter("Q_TELEFONO")));
+        Cliente cliente = new Cliente();
 
         String respuesta = cdao.agregarCliente(co, cliente);
 
