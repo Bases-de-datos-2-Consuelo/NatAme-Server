@@ -5,7 +5,6 @@
  */
 package servidor;
 
-import DAO.PedidoDAO;
 import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,15 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import negocio.modelos.Pedido;
 
 /**
  *
  * @author asus
  */
-public class AgregarPedido extends HttpServlet {
-
-    String respuesta = "Hola";
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,30 +34,31 @@ public class AgregarPedido extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-//        String user = request.getParameter("user");
-//        String password = request.getParameter("password");
-//        user="natame";
-//        password="natame1234";
-        //Conexion c = new Conexion("admin1", "admin1"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
-//        Conexion.user=user;
-//        Conexion.password=password;
-        Connection co = Conexion.getConnection();
+        String user = request.getParameter("user");
+        String password = request.getParameter("password");
 
-        String[] productos = request.getParameterValues("K_PRODUCTO");
+        System.out.println(user + "/" + password);
 
-        Pedido pedido = new Pedido();
-        PedidoDAO pedDAO = new PedidoDAO();
-        String respuesta = pedDAO.agregarPedido(co, pedido, productos);
+        Conexion.user = user;
+        Conexion.password = password;
+        Connection co=null;
+        co = Conexion.getConnection();
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("[");
-            out.println("{");
-            out.println("\"respuesta\": \"" + respuesta + '"');
-            out.println("}");
-            out.println("]");
+        if (co != null) {
+            response.sendRedirect("http://127.0.0.1:5500/formulario-crear-cliente.html");
 
+        } else {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("[");
+                out.println("{");
+                out.println("\"respuesta\": \"" + "Paila :'v" + '"');
+                out.println("}");
+                out.println("]"); 
+
+            }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

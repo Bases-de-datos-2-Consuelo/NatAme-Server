@@ -16,9 +16,10 @@ import java.sql.SQLException;
 public class Conexion {
 
     private static Connection conn = null;
-    private static String user = "natame";
-    private static String password = "natame1234";
+    public static String user = "natame";
+    public static String password = "natame1234";
     private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+    
     
     public Conexion(String user, String password){
         this.user=user;
@@ -42,9 +43,10 @@ public class Conexion {
         return conn;
     }
 
-    public void desconexion() {
+    public static void desconexion() {
         try {
             conn.close();
+            System.out.println("Conexión terminada");
         } catch (Exception e) {
             System.out.println("Error al desconectar" + e.getMessage());
         }

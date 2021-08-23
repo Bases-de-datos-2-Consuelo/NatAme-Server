@@ -20,6 +20,14 @@
         <servlet-name>AgregarPedido</servlet-name>
         <servlet-class>servidor.AgregarPedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>servidor.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>servidor.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServidorPrueba</servlet-name>
         <url-pattern>/ServidorPrueba</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>AgregarPedido</servlet-name>
         <url-pattern>/agregar-pedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
