@@ -22,7 +22,7 @@ import negocio.modelos.Pedido;
  */
 public class AgregarPedido extends HttpServlet {
 
-    String respuesta = "Hola";
+    String respuesta = null;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,14 +49,17 @@ public class AgregarPedido extends HttpServlet {
 
         String[] productos = request.getParameterValues("K_PRODUCTO");
         String estado = request.getParameter("ESTADO_PEDIDO");
+        String tipo_pago = request.getParameter("I_TIPO_PAGO");
+        String calificacion = request.getParameter("Q_CALIFICACION");
+
         Pedido pedido = new Pedido();
         PedidoDAO pedDAO = new PedidoDAO();
-                
-        if (estado.equals("GUARDAR")){
-            String respuesta = pedDAO.agregarPedido(co, pedido, productos);
-            }
-        else{
-            String respuesta = pedDAO.agregarPedido(co, pedido, productos);
+
+        if (estado.equals("GUARDAR")) {
+            respuesta = pedDAO.guardarPedido(co, pedido, productos);
+
+        } else {
+            respuesta = pedDAO.pagarPedido(co, pedido, productos, tipo_pago, calificacion, Conexion.user);
         }
 
         try (PrintWriter out = response.getWriter()) {

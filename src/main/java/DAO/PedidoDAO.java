@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class PedidoDAO {
 
     }
 
-    public String agregarPedido(Connection conn, Pedido pedido, String[] productos) {
+    public String guardarPedido(Connection conn, Pedido pedido, String[] productos) {  
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
@@ -59,17 +60,18 @@ public class PedidoDAO {
 
         } catch (SQLException e) {
             System.out.println(e);
-            return e.toString();
+            return e.getMessage();
         }
         //return "Respuesta desde DAO";
     }
 
-    public String pagarPedido(Connection conn, Pedido pedido, String[] productos,String tipo_pago,String nota,String usua) {
+    public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua) {
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
+        PreparedStatement pstActualizarPedido = null;
 
-        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','PSE',NULL,NULL,'rep123','usercli')";
+        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PAGADO','" + tipo_pago + "','" + Integer.parseInt(nota) + "',NULL,'rep123','usercli')";
 
         System.out.println(sqlPedido);
 
@@ -82,7 +84,6 @@ public class PedidoDAO {
             String sqlProducto = null;
             if (generated.next()) {
                 int K_PEDIDO = generated.getInt(1);
-                System.out.println(K_PEDIDO + " " + productos.length);
                 for (int i = 0; i < productos.length; i++) {
 
                     sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", 1,1,2)";
@@ -94,24 +95,28 @@ public class PedidoDAO {
                         + "SET V_TOTAL=(SELECT sum(i.Q_CANTIDAD *p.V_VALOR ) TOTAL FROM item i,PRODUCTO p"
                         + "			WHERE i.K_PRODUCTO=p.K_PRODUCTO "
                         + "			),"
-                        + "I_ESTADO='PAGADO',"
-                        + "I_TIPO_PAGO='"+tipo_pago+"',"
-                        + "Q_CALIFICACION="+Integer.parseInt(nota)+","
-                        + "F_FECHA_PAGO=CURRENT_DATE,"
-                        + "K_REALIZADO_PARA="+usua+"'"
-                        + "WHERE K_PEDIDO ="+K_PEDIDO;  
+                        //+ "I_ESTADO='PAGADO',"
+                        //+ "I_TIPO_PAGO='" + tipo_pago + "',"
+                        //+ "Q_CALIFICACION=" + Integer.parseInt(nota) + ","
+                        + "F_FECHA_PAGO=CURRENT_DATE "
+                        //+ "K_REALIZADO_PARA=" + usua + "'"
+                        + "WHERE K_PEDIDO =" + K_PEDIDO;
+                System.out.println(sqlPago);
+                pstActualizarPedido = conn.prepareStatement(sqlPago);
+                pstActualizarPedido.execute();
+
                 pstProductos.close();
-                
+
             } else {
                 System.out.println("No entró al if");
             }
 
             pstPedido.close();
-            return "Guardado correctamente.";
+            return "Pagado correctamente.";
 
         } catch (SQLException e) {
             System.out.println(e);
-            return e.toString();
+            return e.getMessage();
         }
     }
-    }
+}

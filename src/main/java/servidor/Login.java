@@ -44,25 +44,24 @@ public class Login extends HttpServlet {
 
         Conexion.user = user;
         Conexion.password = password;
-//        Conexion.getConnection();
+        Conexion.getConnection();
 
-       
-            if (Conexion.n!=0) {
-                System.out.println("n"+Conexion.n);
-                response.sendRedirect("http://127.0.0.1:5500/formulario-crear-cliente.html");
-                
-            } else {
-                try (PrintWriter out = response.getWriter()) {
-                    /* TODO output your page here. You may use following sample code. */
-                    out.println("[");
-                    out.println("{");
-                    out.println("\"respuesta \": \"" + "Paila :'v" + '"');
-                    out.println("}");
-                    out.println("]");
-                    
-                }
+        if (Conexion.n != 0) {
+            System.out.println("n" + Conexion.n);
+            response.sendRedirect("http://127.0.0.1:5500/formulario-crear-cliente.html");
+
+        } else {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("[");
+                out.println("{");
+                out.println("\"respuesta \": \"" + "Paila :'v" + '"');
+                out.println("}");
+                out.println("]");
+
             }
-            }
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
