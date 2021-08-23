@@ -34,6 +34,7 @@ public class Logout extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin", "*");
 
         Conexion.desconexion();
+        Conexion.n=0;
 
         response.sendRedirect("http://127.0.0.1:5500/index.html");
 

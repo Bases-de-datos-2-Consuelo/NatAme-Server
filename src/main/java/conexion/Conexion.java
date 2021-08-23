@@ -19,7 +19,7 @@ public class Conexion {
     public static String user = "natame";
     public static String password = "natame1234";
     private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
-    
+    public static Integer n;
     
     public Conexion(String user, String password){
         this.user=user;
@@ -28,15 +28,22 @@ public class Conexion {
 
     public static Connection getConnection() {
         try {
+            System.out.println("getConexion"+user+"-"+password);
+            conn=null;
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(url, user, password);
             //conn.setAutoCommit(false);
             if (conn != null) {
+                n=1;
                 System.out.println("Conexión exitosa");
             } else {
+                n=0;
+                conn=null;
                 System.out.println("Conexión no exitosa");
             }
         } catch (ClassNotFoundException | SQLException e) {
+            n=0;
+            conn=null;
             System.out.println("Error al conectar" + e);
         }
 
@@ -45,9 +52,12 @@ public class Conexion {
 
     public static void desconexion() {
         try {
+            n=0;
             conn.close();
+            conn=null;
             System.out.println("Conexión terminada");
         } catch (Exception e) {
+            conn=null;
             System.out.println("Error al desconectar" + e.getMessage());
         }
 

@@ -48,10 +48,16 @@ public class AgregarPedido extends HttpServlet {
         Connection co = Conexion.getConnection();
 
         String[] productos = request.getParameterValues("K_PRODUCTO");
-
+        String estado = request.getParameter("ESTADO_PEDIDO");
         Pedido pedido = new Pedido();
         PedidoDAO pedDAO = new PedidoDAO();
-        String respuesta = pedDAO.agregarPedido(co, pedido, productos);
+                
+        if (estado.equals("GUARDAR")){
+            String respuesta = pedDAO.agregarPedido(co, pedido, productos);
+            }
+        else{
+            String respuesta = pedDAO.agregarPedido(co, pedido, productos);
+        }
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
