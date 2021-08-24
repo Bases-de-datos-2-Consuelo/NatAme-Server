@@ -5,24 +5,18 @@
  */
 package servidor;
 
-import DAO.PedidoDAO;
-import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import negocio.modelos.Pedido;
 
 /**
  *
  * @author asus
  */
-public class AgregarPedido extends HttpServlet {
-
-    String respuesta = null;
+public class AgregarCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,43 +29,18 @@ public class AgregarPedido extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin", "*");
-
-//        String user = request.getParameter("user");
-//        String password = request.getParameter("password");
-//        user="natame";
-//        password="natame1234";
-        //Conexion c = new Conexion("admin1", "admin1"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
-//        Conexion.user=user;
-//        Conexion.password=password;
-        Connection co = Conexion.getConnection();
-
-        String[] productos = request.getParameterValues("K_PRODUCTO");
-        String estado = request.getParameter("ESTADO_PEDIDO");
-        String tipo_pago = request.getParameter("I_TIPO_PAGO");
-        String calificacion = request.getParameter("Q_CALIFICACION");
-        String regional = request.getParameter("K_REGION");
-        String pais = request.getParameter("K_PAIS");
-
-        Pedido pedido = new Pedido();
-        PedidoDAO pedDAO = new PedidoDAO();
-
-        if (estado.equals("GUARDAR")) {
-            respuesta = pedDAO.guardarPedido(co, pedido, productos,tipo_pago, regional, pais);
-
-        } else {
-            respuesta = pedDAO.pagarPedido(co, pedido, productos, tipo_pago, calificacion, Conexion.user, regional, pais);
-        }
-
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("[");
-            out.println("{");
-            out.println("\"respuesta\": \"" + respuesta + '"');
-            out.println("}");
-            out.println("]");
-
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AgregarCliente</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AgregarCliente at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

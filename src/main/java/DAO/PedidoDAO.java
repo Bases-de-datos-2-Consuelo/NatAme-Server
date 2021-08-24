@@ -25,15 +25,14 @@ public class PedidoDAO {
 
     }
 
-    public String guardarPedido(Connection conn, Pedido pedido, String[] productos) {  
+    public String guardarPedido(Connection conn, Pedido pedido, String[] productos,String tipo_pago, String region, String pais) {
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
 
-        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','PSE',NULL,NULL,'rep123','usercli')";
+        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','"+tipo_pago+"',NULL,NULL,'rep123','usercli')";
 
         //System.out.println(sqlPedido);
-
         try {
 
             pstPedido = conn.prepareStatement(sqlPedido, new String[]{"K_PEDIDO"});
@@ -41,13 +40,13 @@ public class PedidoDAO {
             ResultSet generated = pstPedido.getGeneratedKeys();
 
             String sqlProducto = null;
+
             if (generated.next()) {
                 int K_PEDIDO = generated.getInt(1);
                 //System.out.println(K_PEDIDO + " " + productos.length);
                 for (int i = 0; i < productos.length; i++) {
 
-                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", 1,1,2)";
-                    //System.out.println(sqlProducto);
+                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + Integer.parseInt(region) + "," + Integer.parseInt(pais) + ",2)";
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
                 }
@@ -62,19 +61,19 @@ public class PedidoDAO {
             System.out.println(e);
             return e.getMessage();
         }
-        
+
     }
 
-    public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua) {
+    public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua, String region, String pais) {
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
         PreparedStatement pstActualizarPedido = null;
+        PreparedStatement pstInventario = null;
 
         String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PAGADO','" + tipo_pago + "','" + Integer.parseInt(nota) + "',NULL,'rep123','usercli')";
 
         //System.out.println(sqlPedido);
-
         try {
 
             pstPedido = conn.prepareStatement(sqlPedido, new String[]{"K_PEDIDO"});
@@ -82,14 +81,20 @@ public class PedidoDAO {
             ResultSet generated = pstPedido.getGeneratedKeys();
 
             String sqlProducto = null;
+            String sqlInventario = null;
             if (generated.next()) {
                 int K_PEDIDO = generated.getInt(1);
-                for (int i = 0; i < productos.length; i++) {
+                for (int i = 0; i < productos.length; i++) { 
 
-                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", 1,1,2)";
+                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + Integer.parseInt(region) + "," + Integer.parseInt(pais) + ",2)";
                     //System.out.println(sqlProducto);
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
+
+                    sqlInventario = "UPDATE inventario i SET i.Q_STOCK =i.Q_STOCK - 2 WHERE i.K_PRODUCTO=2 AND i.K_REGION=1 AND i.K_PAIS =1";
+
+                    pstInventario = conn.prepareStatement(sqlInventario);
+                    pstInventario.execute();
                 }
                 String sqlPago = "UPDATE PEDIDO "
                         + "SET V_TOTAL=(SELECT sum(i.Q_CANTIDAD *p.V_VALOR ) TOTAL FROM item i,PRODUCTO p"
@@ -104,6 +109,7 @@ public class PedidoDAO {
                 //System.out.println(sqlPago);
                 pstActualizarPedido = conn.prepareStatement(sqlPago);
                 pstActualizarPedido.execute();
+                pstActualizarPedido.close();
 
                 pstProductos.close();
 
