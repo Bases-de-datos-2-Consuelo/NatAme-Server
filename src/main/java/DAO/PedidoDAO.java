@@ -32,7 +32,7 @@ public class PedidoDAO {
 
         String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','PSE',NULL,NULL,'rep123','usercli')";
 
-        System.out.println(sqlPedido);
+        //System.out.println(sqlPedido);
 
         try {
 
@@ -43,11 +43,11 @@ public class PedidoDAO {
             String sqlProducto = null;
             if (generated.next()) {
                 int K_PEDIDO = generated.getInt(1);
-                System.out.println(K_PEDIDO + " " + productos.length);
+                //System.out.println(K_PEDIDO + " " + productos.length);
                 for (int i = 0; i < productos.length; i++) {
 
                     sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", 1,1,2)";
-                    System.out.println(sqlProducto);
+                    //System.out.println(sqlProducto);
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
                 }
@@ -62,7 +62,7 @@ public class PedidoDAO {
             System.out.println(e);
             return e.getMessage();
         }
-        //return "Respuesta desde DAO";
+        
     }
 
     public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua) {
@@ -73,7 +73,7 @@ public class PedidoDAO {
 
         String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PAGADO','" + tipo_pago + "','" + Integer.parseInt(nota) + "',NULL,'rep123','usercli')";
 
-        System.out.println(sqlPedido);
+        //System.out.println(sqlPedido);
 
         try {
 
@@ -87,7 +87,7 @@ public class PedidoDAO {
                 for (int i = 0; i < productos.length; i++) {
 
                     sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", 1,1,2)";
-                    System.out.println(sqlProducto);
+                    //System.out.println(sqlProducto);
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
                 }
@@ -101,7 +101,7 @@ public class PedidoDAO {
                         + "F_FECHA_PAGO=CURRENT_DATE "
                         //+ "K_REALIZADO_PARA=" + usua + "'"
                         + "WHERE K_PEDIDO =" + K_PEDIDO;
-                System.out.println(sqlPago);
+                //System.out.println(sqlPago);
                 pstActualizarPedido = conn.prepareStatement(sqlPago);
                 pstActualizarPedido.execute();
 

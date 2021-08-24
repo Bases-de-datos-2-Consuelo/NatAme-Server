@@ -37,11 +37,10 @@ public class AgregarRepresentante extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-        String user = request.getParameter("user");
-        String password = request.getParameter("password");
-
-        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
-        Connection co = c.getConnection();
+//        String user = request.getParameter("user");
+//        String password = request.getParameter("password");
+//        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+        Connection co = Conexion.getConnection();
 
         RepresentanteVentasDAO representanteDAO = new RepresentanteVentasDAO();
         Representante_Ventas representante = new Representante_Ventas(request.getParameter("K_USUARIO"), request.getParameter("K_REPRESENTANTE_SUPERIOR"), Integer.parseInt(request.getParameter("K_REGION")), Integer.parseInt(request.getParameter("K_PAIS")));
