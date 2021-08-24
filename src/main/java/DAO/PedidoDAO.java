@@ -93,8 +93,8 @@ public class PedidoDAO {
 
                     sqlInventario = "UPDATE inventario i SET i.Q_STOCK =i.Q_STOCK - 2 WHERE i.K_PRODUCTO=2 AND i.K_REGION=1 AND i.K_PAIS =1";
 
-                    pstInventario = conn.prepareStatement(sqlInventario);
-                    pstInventario.execute();
+//                    pstInventario = conn.prepareStatement(sqlInventario);
+//                    pstInventario.execute();
                 }
                 String sqlPago = "UPDATE PEDIDO "
                         + "SET V_TOTAL=(SELECT sum(i.Q_CANTIDAD *p.V_VALOR ) TOTAL FROM item i,PRODUCTO p"
@@ -112,6 +112,7 @@ public class PedidoDAO {
                 pstActualizarPedido.close();
 
                 pstProductos.close();
+//                pstInventario.close();
 
             } else {
                 System.out.println("No entró al if");
