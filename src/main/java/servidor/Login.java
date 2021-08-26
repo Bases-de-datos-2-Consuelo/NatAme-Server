@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
 
         if (Conexion.n != 0) {
             System.out.println("n" + Conexion.n);
-            response.sendRedirect("http://127.0.0.1:5500/formulario-crear-cliente.html");
+            response.sendRedirect("http://127.0.0.1:5500/Menu.html");
 
         } else {
             try (PrintWriter out = response.getWriter()) {
