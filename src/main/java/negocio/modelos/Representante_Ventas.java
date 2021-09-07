@@ -21,11 +21,12 @@ public class Representante_Ventas {
    String N_CORREO;
    String I_GENERO;
    String F_NACIMIENTO;
+   String N_TELEFONO;
 
     public Representante_Ventas() {
     }
 
-    public Representante_Ventas(String K_REPRESENTANTE, String K_REPRESENTANTE_SUPERIOR, int K_REGION, int K_PAIS, String N_NOMBRE1, String N_NOMBRE2, String N_APELLIDO1, String N_APELLIDO2, String I_TIPO_DOCUMENTO, String N_DOCUMENTO, String N_DIRECCION, String N_CORREO, String I_GENERO, String F_NACIMIENTO) {
+    public Representante_Ventas(String K_REPRESENTANTE, String K_REPRESENTANTE_SUPERIOR, int K_REGION, int K_PAIS, String N_NOMBRE1, String N_NOMBRE2, String N_APELLIDO1, String N_APELLIDO2, String I_TIPO_DOCUMENTO, String N_DOCUMENTO, String N_DIRECCION, String N_CORREO, String I_GENERO, String F_NACIMIENTO, String N_TELEFONO) {
         this.K_REPRESENTANTE = K_REPRESENTANTE;
         this.K_REPRESENTANTE_SUPERIOR = K_REPRESENTANTE_SUPERIOR;
         this.K_REGION = K_REGION;
@@ -40,6 +41,7 @@ public class Representante_Ventas {
         this.N_CORREO = N_CORREO;
         this.I_GENERO = I_GENERO;
         this.F_NACIMIENTO = F_NACIMIENTO;
+        this.N_TELEFONO = N_TELEFONO;
     }
 
     public String getK_REPRESENTANTE() {
@@ -152,6 +154,14 @@ public class Representante_Ventas {
 
     public void setF_NACIMIENTO(String F_NACIMIENTO) {
         this.F_NACIMIENTO = F_NACIMIENTO;
+    }
+
+    public String getN_TELEFONO() {
+        return N_TELEFONO;
+    }
+
+    public void setN_TELEFONO(String N_TELEFONO) {
+        this.N_TELEFONO = N_TELEFONO;
     }
 
     
