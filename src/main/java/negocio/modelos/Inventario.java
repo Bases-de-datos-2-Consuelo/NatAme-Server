@@ -10,19 +10,38 @@ package negocio.modelos;
  * @author luisy
  */
 public class Inventario {
-    int Q_STOCK;
+   int Q_STOCK;
+   float Q_VALOR;
    int K_PRODUCTO ;
    int K_REGION ;
    int K_PAIS;
+   
 
     public Inventario() {
     }
 
-    public Inventario(int Q_STOCK, int K_PRODUCTO, int K_REGION, int K_PAIS) {
+    public Inventario(int Q_STOCK, float Q_VALOR, int K_PRODUCTO, int K_REGION, int K_PAIS) {
         this.Q_STOCK = Q_STOCK;
+        this.Q_VALOR = Q_VALOR;
         this.K_PRODUCTO = K_PRODUCTO;
         this.K_REGION = K_REGION;
         this.K_PAIS = K_PAIS;
+    }
+
+    public int getQ_STOCK() {
+        return Q_STOCK;
+    }
+
+    public void setQ_STOCK(int Q_STOCK) {
+        this.Q_STOCK = Q_STOCK;
+    }
+
+    public float getQ_VALOR() {
+        return Q_VALOR;
+    }
+
+    public void setQ_VALOR(float Q_VALOR) {
+        this.Q_VALOR = Q_VALOR;
     }
 
     public int getK_PRODUCTO() {
@@ -47,16 +66,5 @@ public class Inventario {
 
     public void setK_PAIS(int K_PAIS) {
         this.K_PAIS = K_PAIS;
-    }
-   
-
-
-    
-    public int getQ_STOCK() {
-        return Q_STOCK;
-    }
-
-    public void setQ_STOCK(int Q_STOCK) {
-        this.Q_STOCK = Q_STOCK;
-    }
+    }  
 }

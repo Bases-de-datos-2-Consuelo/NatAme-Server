@@ -5,12 +5,8 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
 public class Clasificacion {
-    int K_CLASIFICACION;
+   int K_CLASIFICACION;
    String I_TIPO;
    float Q_COMISION;
    float V_MAXIMO;

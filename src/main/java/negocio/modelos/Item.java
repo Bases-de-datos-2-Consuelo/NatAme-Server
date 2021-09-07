@@ -5,10 +5,7 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
+
 public class Item {
     
    

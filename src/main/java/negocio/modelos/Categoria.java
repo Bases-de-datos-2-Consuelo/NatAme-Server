@@ -5,10 +5,6 @@
  */
 package negocio.modelos;
 
-/**
- *
- * 
- */
 public class Categoria {
     int K_CATEGORIA ;
    int K_SUP_CATEGORIA;

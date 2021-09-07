@@ -5,10 +5,6 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
 public class Usuario {
     
    String K_USUARIO; 

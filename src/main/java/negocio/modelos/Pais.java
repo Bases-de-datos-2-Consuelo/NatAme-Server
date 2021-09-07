@@ -5,10 +5,6 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
 public class Pais {
     int K_PAIS;
    String N_NOMBRE;

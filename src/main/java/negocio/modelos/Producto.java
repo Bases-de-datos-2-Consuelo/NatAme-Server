@@ -5,27 +5,21 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
 public class Producto {
     
    int K_PRODUCTO ;
    int K_CATEGORIA;
    String N_NOMBRE;
-   int V_VALOR;
    String N_DESCRIPCION;
 
     public Producto() {
     }
    
 
-    public Producto(int K_PRODUCTO,int K_CATEGORIA, String N_NOMBRE, int V_VALOR, String N_DESCRIPCION) {
+    public Producto(int K_PRODUCTO,int K_CATEGORIA, String N_NOMBRE, String N_DESCRIPCION) {
         this.K_CATEGORIA=K_CATEGORIA;
         this.K_PRODUCTO = K_PRODUCTO;
         this.N_NOMBRE = N_NOMBRE;
-        this.V_VALOR = V_VALOR;
         this.N_DESCRIPCION = N_DESCRIPCION;
     }
 
@@ -54,13 +48,6 @@ public class Producto {
         this.N_NOMBRE = N_NOMBRE;
     }
 
-    public int getV_VALOR() {
-        return V_VALOR;
-    }
-
-    public void setV_VALOR(int V_VALOR) {
-        this.V_VALOR = V_VALOR;
-    }
 
     public String getN_DESCRIPCION() {
         return N_DESCRIPCION;

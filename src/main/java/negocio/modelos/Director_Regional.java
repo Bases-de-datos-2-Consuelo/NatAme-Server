@@ -5,10 +5,6 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
 public class Director_Regional {
     int K_REGION;
     int  K_PAIS;

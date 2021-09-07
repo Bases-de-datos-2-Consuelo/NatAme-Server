@@ -5,10 +5,6 @@
  */
 package negocio.modelos;
 
-/**
- *
- * @author luisy
- */
 public class Referido {
     
    String K_CLIENTE; 
