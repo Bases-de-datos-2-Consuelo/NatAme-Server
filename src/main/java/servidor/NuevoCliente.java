@@ -10,6 +10,9 @@ import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +49,12 @@ public class NuevoCliente extends HttpServlet {
         ClienteDAO cdao = new ClienteDAO();
         Cliente cliente = new Cliente();
 
-        String respuesta = cdao.agregarCliente(co, cliente);
+        String respuesta="";
+        try {
+            respuesta = cdao.agregarCliente(co, cliente);
+        } catch (SQLException ex) {
+            Logger.getLogger(NuevoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

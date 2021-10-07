@@ -1,26 +1,30 @@
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\conexion\Conexion.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Pais.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\servidor\AgregarRepresentante.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\servidor\NuevoCliente.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Representante_Ventas.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\DAO\PaisDAO.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Director_Regional.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Cliente.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Usuario.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\com\servidor\natame\server\JAXRSConfiguration.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\servidor\AgregarPedido.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Inventario.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Item.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\Principal.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Clasificacion.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\DAO\PedidoDAO.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Historico.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\DAO\RepresentanteVentasDAO.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Pedido.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Producto.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\DAO\UsuarioDAO.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\DAO\ClienteDAO.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\com\servidor\natame\server\resources\JavaEE8Resource.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Categoria.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\negocio\modelos\Referido.java
-C:\Users\olgal\Documents\NetBeansProjects\NatAme-Server\src\main\java\servidor\ServidorPrueba.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\conexion\Conexion.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Clasificacion.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\AgregarCliente.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Inventario.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\DAO\ClienteDAO.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Categoria.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\DAO\UsuarioDAO.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Pais.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Pago.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Producto.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Cliente.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Representante_Ventas.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\AgregarRepresentante.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Historico.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Referido.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\Logout.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\Login.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\ServidorPrueba.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\Principal.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\DAO\PaisDAO.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\NuevoCliente.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\servidor\AgregarPedido.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\com\servidor\natame\server\resources\JavaEE8Resource.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Usuario.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\com\servidor\natame\server\JAXRSConfiguration.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\DAO\PedidoDAO.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Director_Regional.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Item.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\negocio\modelos\Pedido.java
+C:\Users\asus\Desktop\Nicolás\8 Semestre\Bases de datos 2\Consuelo\Nueva carpeta\NatAme-Server\src\main\java\DAO\RepresentanteVentasDAO.java

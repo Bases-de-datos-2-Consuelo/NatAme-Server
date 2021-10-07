@@ -34,31 +34,52 @@ public class AgregarCliente extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
 
+        String K_CLIENTE = request.getParameter("K_CLIENTE");
+        String N_NOMBRE1 = request.getParameter("N_NOMBRE1");
+        String N_NOMBRE2 = request.getParameter("N_NOMBRE2");
+        String N_APELLIDO1 = request.getParameter("N_APELLIDO1");
+        String N_APELLIDO2 = request.getParameter("N_APELLIDO2");
+        String I_TIPO_DOCUMENTO = request.getParameter("I_TIPO_DOCUMENTO");
+        String N_DOCUMENTO = request.getParameter("N_DOCUMENTO");
+        String N_DIRECCION = request.getParameter("N_DIRECCION");
+        String N_CORREO = request.getParameter("N_CORREO");
+        String I_GENERO = request.getParameter("I_GENERO");
+        String F_NACIMIENTO = request.getParameter("F_NACIMIENTO");
+        
+        System.out.println(K_CLIENTE);
+        System.out.println(N_NOMBRE1);
+        System.out.println(N_NOMBRE2);
+        System.out.println(N_APELLIDO1);
+        System.out.println(N_APELLIDO2);
+        System.out.println(I_TIPO_DOCUMENTO);
+        System.out.println(N_DOCUMENTO);
+        System.out.println(N_DIRECCION);
+        System.out.println(N_CORREO);
+        System.out.println(I_GENERO);
+        System.out.println(F_NACIMIENTO);
+
 //        String user = request.getParameter("user");
 //        String password = request.getParameter("password");
 //        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
-        Connection co = Conexion.getConnection();
+        /*Connection co = Conexion.getConnection();
 
         ClienteDAO clienteDAO = new ClienteDAO();
         //Representante_Ventas representante = new Representante_Ventas(request.getParameter("K_USUARIO"), request.getParameter("K_REPRESENTANTE_SUPERIOR"), Integer.parseInt(request.getParameter("K_REGION")), Integer.parseInt(request.getParameter("K_PAIS")));
-        Cliente cliente = new  Cliente(request.getParameter("K_CLIENTE"),request.getParameter("N_NOMBRE1"), request.getParameter("N_NOMBRE2"), request.getParameter("N_APELLIDO1"), request.getParameter("N_APELLIDO2"), request.getParameter("I_TIPO_DOCUMENTO"), request.getParameter("N_DOCUMENTO"), request.getParameter("N_DIRECCION"), request.getParameter("N_CORREO"), request.getParameter("I_GENERO"), request.getParameter("F_NACIMIENTO"));
+        Cliente cliente = new Cliente(request.getParameter("K_CLIENTE"), request.getParameter("N_NOMBRE1"), request.getParameter("N_NOMBRE2"), request.getParameter("N_APELLIDO1"), request.getParameter("N_APELLIDO2"), request.getParameter("I_TIPO_DOCUMENTO"), request.getParameter("N_DOCUMENTO"), request.getParameter("N_DIRECCION"), request.getParameter("N_CORREO"), request.getParameter("I_GENERO"), request.getParameter("F_NACIMIENTO"));
 
         String respuesta = clienteDAO.agregarCliente(co, cliente);
         //String respuesta="hOLI";
-        /*
-        
-       String respuesta="hOLA";*/
+        */
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("[");
             out.println("{");
-            out.println("\"respuesta\": \"" + respuesta + '"');
+            out.println("\"respuesta\": \"" + "Hola mundo desde agregar cliente" + '"');
             out.println("}");
             out.println("]");
 
@@ -77,11 +98,11 @@ public class AgregarCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try {
-             processRequest(request, response);
-         } catch (SQLException ex) {
-             Logger.getLogger(AgregarCliente.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -95,11 +116,11 @@ public class AgregarCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try {
-             processRequest(request, response);
-         } catch (SQLException ex) {
-             Logger.getLogger(AgregarCliente.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
