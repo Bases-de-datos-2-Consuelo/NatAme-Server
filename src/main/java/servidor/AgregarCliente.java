@@ -105,40 +105,14 @@ public class AgregarCliente extends HttpServlet {
             pstUser = connection.prepareStatement(sqlUser);
             pstUser.execute();
             pstUser.close();
-            
+
             PreparedStatement pstGrant = null;
-            String sqlGrant = "GRANT R_CLIENTE TO "+K_CLIENTE;
+            String sqlGrant = "GRANT R_CLIENTE TO " + K_CLIENTE;
             pstGrant = connection.prepareStatement(sqlGrant);
             pstGrant.execute();
             pstGrant.close();
         }
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*ClienteDAO clienteDAO = new ClienteDAO();
-        //Representante_Ventas representante = new Representante_Ventas(request.getParameter("K_USUARIO"), request.getParameter("K_REPRESENTANTE_SUPERIOR"), Integer.parseInt(request.getParameter("K_REGION")), Integer.parseInt(request.getParameter("K_PAIS")));
-        Cliente cliente = new Cliente(request.getParameter("K_CLIENTE"), request.getParameter("N_NOMBRE1"), request.getParameter("N_NOMBRE2"), request.getParameter("N_APELLIDO1"), request.getParameter("N_APELLIDO2"), request.getParameter("I_TIPO_DOCUMENTO"), request.getParameter("N_DOCUMENTO"), request.getParameter("N_DIRECCION"), request.getParameter("N_CORREO"), request.getParameter("I_GENERO"), request.getParameter("F_NACIMIENTO"));
-
-        String respuesta = clienteDAO.agregarCliente(co, cliente);
-        //String respuesta="hOLI";
-         */
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("[");
