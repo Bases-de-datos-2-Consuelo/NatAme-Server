@@ -95,8 +95,8 @@ public class AgregarCliente extends HttpServlet {
         cs.execute(); //ejecuta la llamada y retorna un boolean, se puede usar también executeUpdate() que retorna un entero.
 
         //se recupera el resultado de la funcion pl/sql
-        //String retorno = cs.getString(1);
-        String retorno="ok";
+        String retorno = cs.getString(1);
+//        String retorno="ok";
 
         if (retorno.equalsIgnoreCase("ok")) {
             PreparedStatement pstUser = null;
