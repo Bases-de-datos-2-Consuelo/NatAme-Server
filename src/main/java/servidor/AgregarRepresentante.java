@@ -59,33 +59,32 @@ public class AgregarRepresentante extends HttpServlet {
         String F_NACIMIENTO = request.getParameter("F_NACIMIENTO");
         String fecha[] = F_NACIMIENTO.split("-");
         F_NACIMIENTO = fecha[2] + '-' + fecha[1] + '-' + fecha[0];
-
         String N_TELEFONO = request.getParameter("N_TELEFONO");
-        System.out.println(K_REPRESENTANTE);
-        System.out.println(K_REGION);
-        System.out.println(K_PAIS);
-        System.out.println(K_REPRESENTANTE_SUPERIOR);
-        System.out.println(N_NOMBRE1);
-        System.out.println(N_NOMBRE2);
-        System.out.println(N_APELLIDO1);
-        System.out.println(N_APELLIDO2);
-        System.out.println(I_TIPO_DOCUMENTO);
-        System.out.println(Q_DOCUMENTO);
-        System.out.println(N_DIRECCION);
-        System.out.println(N_CORREO);
-        System.out.println(I_GENERO);
-        System.out.println(F_NACIMIENTO);
-        System.out.println(N_TELEFONO);
+//        System.out.println(K_REPRESENTANTE);
+//        System.out.println(K_REGION);
+//        System.out.println(K_PAIS);
+//        System.out.println(K_REPRESENTANTE_SUPERIOR);
+//        System.out.println(N_NOMBRE1);
+//        System.out.println(N_NOMBRE2);
+//        System.out.println(N_APELLIDO1);
+//        System.out.println(N_APELLIDO2);
+//        System.out.println(I_TIPO_DOCUMENTO);
+//        System.out.println(Q_DOCUMENTO);
+//        System.out.println(N_DIRECCION);
+//        System.out.println(N_CORREO);
+//        System.out.println(I_GENERO);
+//        System.out.println(F_NACIMIENTO);
+//        System.out.println(N_TELEFONO);
 
         // response.sendRedirect("https://www.it-swarm-es.com/es/java/llamar-una-funcion-de-oracle-desde-java/1068792680/");
         //String user = request.getParameter("user");
         //String password = request.getParameter("password");
-        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+        //Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
         Connection connection = Conexion.getConnection();
         CallableStatement cs = null;
 
         //Se realiza la llamada a la funcion de BBDD que retornará un String
-        cs = connection.prepareCall("{? = call FU_AGREGAR_REPVENTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        cs = connection.prepareCall("{? = call NATAME.FU_AGREGAR_REPVENTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 
         cs.registerOutParameter(1, Types.VARCHAR); //se indica el objeto de salida y la posición, en este caso un String.
         cs.setString(2, K_REPRESENTANTE);
@@ -117,6 +116,12 @@ public class AgregarRepresentante extends HttpServlet {
             pstUser.execute();
             pstUser.close();
 
+            PreparedStatement pstGrant = null;
+            String sqlGrant = "GRANT R_REPRESENTANTEVENTA,R_CLIENTE TO " + K_REPRESENTANTE +" WITH ADMIN OPTION";
+            pstGrant = connection.prepareStatement(sqlGrant);
+            pstGrant.execute();
+            pstGrant.close();
+
             try (PrintWriter out = response.getWriter()) {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("[");
@@ -128,4 +133,35 @@ public class AgregarRepresentante extends HttpServlet {
             }
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRepresentante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRepresentante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRepresentante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRepresentante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

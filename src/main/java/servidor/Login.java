@@ -40,8 +40,6 @@ public class Login extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("password");
 
-        System.out.println(user + "/" + password);
-
         Conexion.user = user;
         Conexion.password = password;
         Conexion.getConnection();
@@ -55,7 +53,7 @@ public class Login extends HttpServlet {
                 /* TODO output your page here. You may use following sample code. */
                 out.println("[");
                 out.println("{");
-                out.println("\"respuesta \": \"" + "Paila :'v" + '"');
+                out.println("\"respuesta \": \"" + "No se pudo iniciar sesión" + '"'); 
                 out.println("}");
                 out.println("]");
 

@@ -28,14 +28,14 @@ public class Conexion {
 
     public static Connection getConnection() {
         try {
-            System.out.println("getConexion"+user+"-"+password);
+            
             conn=null;
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(url, user, password);
             //conn.setAutoCommit(false);
             if (conn != null) {
                 n=1;
-                System.out.println("Conexión exitosa");
+                System.out.println("Conectado con: "+user+"-"+password);
             } else {
                 n=0;
                 conn=null;
@@ -44,7 +44,7 @@ public class Conexion {
         } catch (ClassNotFoundException | SQLException e) {
             n=0;
             conn=null;
-            System.out.println("Error al conectar" + e);
+            System.out.println(e);
         }
 
         return conn;

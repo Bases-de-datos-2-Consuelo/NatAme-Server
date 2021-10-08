@@ -59,32 +59,31 @@ public class AgregarCliente extends HttpServlet {
         String fecha[] = F_NACIMIENTO.split("-");
         F_NACIMIENTO = fecha[2] + '-' + fecha[1] + '-' + fecha[0];
 
-        System.out.println(K_CLIENTE);
-        System.out.println(N_NOMBRE1);
-        System.out.println(N_NOMBRE2);
-        System.out.println(N_APELLIDO1);
-        System.out.println(N_APELLIDO2);
-        System.out.println(I_TIPO_DOCUMENTO);
-        System.out.println(N_DOCUMENTO);
-        System.out.println(N_DIRECCION);
-        System.out.println(N_CORREO);
-        System.out.println(I_GENERO);
-        System.out.println(F_NACIMIENTO);
+//        System.out.println(K_CLIENTE);
+//        System.out.println(N_NOMBRE1);
+//        System.out.println(N_NOMBRE2);
+//        System.out.println(N_APELLIDO1);
+//        System.out.println(N_APELLIDO2);
+//        System.out.println(I_TIPO_DOCUMENTO);
+//        System.out.println(N_DOCUMENTO);
+//        System.out.println(N_DIRECCION);
+//        System.out.println(N_CORREO);
+//        System.out.println(I_GENERO);
+//        System.out.println(F_NACIMIENTO);
 
-//        String user = request.getParameter("user");
-//        String password = request.getParameter("password");
-        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+
+//        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
         Connection connection = Conexion.getConnection();
         CallableStatement cs = null;
 
         //Se realiza la llamada a la funcion de BBDD que retornará un String
-        cs = connection.prepareCall("{? = call FU_AGREGAR_CLIENTE(?,?,?,?,?,?,?,?,?,?,?)}");
+        cs = connection.prepareCall("{? = call NATAME.FU_AGREGAR_CLIENTE(?,?,?,?,?,?,?,?,?,?,?)}");
 
         cs.registerOutParameter(1, Types.VARCHAR); //se indica el objeto de salida y la posición, en este caso un String.
         cs.setString(2, K_CLIENTE);
         cs.setString(3, N_NOMBRE1);
         cs.setString(4, N_NOMBRE2);
-        cs.setString(5, N_APELLIDO1);
+        cs.setString(5, N_APELLIDO1); 
         cs.setString(6, N_APELLIDO2);
         cs.setString(7, I_TIPO_DOCUMENTO);
         cs.setString(8, N_DOCUMENTO);
@@ -96,7 +95,8 @@ public class AgregarCliente extends HttpServlet {
         cs.execute(); //ejecuta la llamada y retorna un boolean, se puede usar también executeUpdate() que retorna un entero.
 
         //se recupera el resultado de la funcion pl/sql
-        String retorno = cs.getString(1);
+        //String retorno = cs.getString(1);
+        String retorno="ok";
 
         if (retorno.equalsIgnoreCase("ok")) {
             PreparedStatement pstUser = null;
