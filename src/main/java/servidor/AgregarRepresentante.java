@@ -59,7 +59,7 @@ public class AgregarRepresentante extends HttpServlet {
         String F_NACIMIENTO = request.getParameter("F_NACIMIENTO");
         String fecha[] = F_NACIMIENTO.split("-");
         F_NACIMIENTO = fecha[2] + '-' + fecha[1] + '-' + fecha[0];
-        
+
         String N_TELEFONO = request.getParameter("N_TELEFONO");
         System.out.println(K_REPRESENTANTE);
         System.out.println(K_REGION);
@@ -76,10 +76,7 @@ public class AgregarRepresentante extends HttpServlet {
         System.out.println(I_GENERO);
         System.out.println(F_NACIMIENTO);
         System.out.println(N_TELEFONO);
-        String fecha[] = F_NACIMIENTO.split("-");
-        F_NACIMIENTO = fecha[2] + '-' + fecha[1] + '-' + fecha[0];
 
-<<<<<<< HEAD
         // response.sendRedirect("https://www.it-swarm-es.com/es/java/llamar-una-funcion-de-oracle-desde-java/1068792680/");
         //String user = request.getParameter("user");
         //String password = request.getParameter("password");
@@ -120,114 +117,15 @@ public class AgregarRepresentante extends HttpServlet {
             pstUser.execute();
             pstUser.close();
 
-=======
-        Conexion c = new Conexion("natame", "natame1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
-        Connection connection = Conexion.getConnection();
-        CallableStatement cs = null;
-        
-        //llamo a la función
-        cs = connection.prepareCall("{? = call FU_AGREGAR_REPVENTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-        
-        //salida
-        cs.registerOutParameter(1, Types.VARCHAR);
-        cs.setString(2, K_REPRESENTANTE);
-        cs.setInt(3, Integer.parseInt(K_REGION));
-        cs.setInt(4, Integer.parseInt(K_PAIS));
-        cs.setString(5, K_REPRESENTANTE_SUPERIOR);
-        cs.setString(6, N_NOMBRE1);
-        cs.setString(7, N_NOMBRE2);
-        cs.setString(8, N_APELLIDO1);
-        cs.setString(9, N_APELLIDO2);
-        cs.setString(10, I_TIPO_DOCUMENTO);
-        cs.setString(11, Q_DOCUMENTO);
-        cs.setString(12, N_DIRECCION);
-        cs.setString(13, N_CORREO);
-        cs.setString(14, I_GENERO);
-        cs.setString(15, F_NACIMIENTO);
-        cs.setString(16, N_TELEFONO);
-        
-        cs.execute();
-        //se recupera el resultado de la funcion pl/sql
-        String retorno = cs.getString(1);
-        
-        if (retorno.equalsIgnoreCase("ok")) {
-            PreparedStatement pstUser = null;
-            String sqlUser = "CREATE USER " + K_REPRESENTANTE + " IDENTIFIED BY " + K_REPRESENTANTE + " DEFAULT TABLESPACE usernatdef temporary tablespace usernattmp quota 2m on usernatdef";
-            System.out.println(sqlUser);
-            pstUser = connection.prepareStatement(sqlUser);
-            pstUser.execute();
-            pstUser.close();
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("[");
+                out.println("{");
+                out.println("\"respuesta\": \"" + retorno + '"');
+                out.println("}");
+                out.println("]");
 
->>>>>>> d14a8ab8a8f952390217332e710ede10e511d4b8
-            PreparedStatement pstGrant = null;
-            String sqlGrant = "GRANT R_REPRESENTANTEVENTA TO " + K_REPRESENTANTE;
-            pstGrant = connection.prepareStatement(sqlGrant);
-            pstGrant.execute();
-            pstGrant.close();
-        }
-<<<<<<< HEAD
-
-=======
-        
-        
-        
->>>>>>> d14a8ab8a8f952390217332e710ede10e511d4b8
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("[");
-            out.println("{");
-            out.println("\"respuesta\": \"" + retorno + '"');
-            out.println("}");
-            out.println("]");
-
+            }
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AgregarRepresentante.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AgregarRepresentante.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
