@@ -8,6 +8,7 @@ negocio\modelos\Pago.class
 negocio\modelos\Categoria.class
 negocio\modelos\Representante_Ventas.class
 servidor\Login.class
+servidor\Router.class
 negocio\Principal.class
 negocio\modelos\Referido.class
 servidor\AgregarPedido.class
@@ -15,6 +16,7 @@ conexion\Conexion.class
 DAO\PaisDAO.class
 com\servidor\natame\server\resources\JavaEE8Resource.class
 servidor\ServidorPrueba.class
+servidor\ServletHTML.class
 negocio\modelos\Usuario.class
 negocio\modelos\Inventario.class
 servidor\AgregarRepresentante.class
@@ -26,5 +28,6 @@ negocio\modelos\Pais.class
 DAO\PedidoDAO.class
 negocio\modelos\Clasificacion.class
 servidor\AgregarCliente.class
+servidor\Home.class
 negocio\modelos\Director_Regional.class
 DAO\ClienteDAO.class

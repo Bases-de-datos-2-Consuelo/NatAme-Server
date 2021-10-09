@@ -30,7 +30,7 @@
     </head>
 
     <body>
-       
+        <H3>TIPO: ${tipo}</H3>
         
         <div class="container" id="content" >
             <nav>
@@ -43,7 +43,7 @@
                     <li><a href=""><img  src="https://html-online.com/img/6-table-div-html.png" id="men"  />Estadisticas</a></li>
                     <li>
 
-                        <form action="http://localhost:8083/NatAme-Server/logout">
+                        <form action="http://localhost:8083/NatAme-Server/home">
 
                             <div align="right">
                                 <button  class="btn btn-danger btn-circle btn-xl" >Cerrar sesión </button>

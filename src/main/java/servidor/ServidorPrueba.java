@@ -44,19 +44,15 @@ public class ServidorPrueba extends HttpServlet {
         String user=request.getParameter("user");
         String password=request.getParameter("password");
         
-        Conexion c = new Conexion("nicolas","nicolas1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
+        //Conexion c = new Conexion("nicolas","nicolas1234"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
 
-        Connection co = c.getConnection();
+        //Connection co = c.getConnection();
 
         ClienteDAO cdao = new ClienteDAO();
         Cliente cliente=new Cliente(); 
         
         String respuesta="";
-        try {
-            respuesta = cdao.agregarCliente(co,cliente);
-        } catch (SQLException ex) {
-            Logger.getLogger(ServidorPrueba.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //respuesta = cdao.agregarCliente(co,cliente);
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

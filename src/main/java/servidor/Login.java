@@ -5,6 +5,7 @@
  */
 package servidor;
 
+import DAO.UsuarioDAO;
 import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,12 +43,16 @@ public class Login extends HttpServlet {
 
         Conexion.user = user;
         Conexion.password = password;
+        Conexion.tipo = UsuarioDAO.getTipoUsuario(user);
         Conexion.getConnection();
 
         if (Conexion.n != 0) {
             System.out.println("n" + Conexion.n);
             //response.sendRedirect("http://127.0.0.1:5500/Menu.html");
+            
             request.setAttribute("nombre", Conexion.user);
+            request.setAttribute("tipo", Conexion.tipo);
+            System.out.println("nombre tipo" + Conexion.tipo );
             request.getRequestDispatcher("menu.jsp").forward(request, response);
           
         } else {

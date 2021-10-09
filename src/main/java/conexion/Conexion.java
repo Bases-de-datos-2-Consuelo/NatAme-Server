@@ -20,10 +20,12 @@ public class Conexion {
     public static String password = "natame1234";
     private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
     public static Integer n;
+    public static String tipo;
     
-    public Conexion(String user, String password){
+    public Conexion(String user, String password, String tipo){
         this.user=user;
         this.password=password;
+        this.tipo = tipo;
     }
 
     public static Connection getConnection() {
@@ -35,7 +37,7 @@ public class Conexion {
             //conn.setAutoCommit(false);
             if (conn != null) {
                 n=1;
-                System.out.println("Conectado con: "+user+"-"+password);
+                System.out.println("Conectado con: "+user+"-"+password +"("+tipo+")");
             } else {
                 n=0;
                 conn=null;
