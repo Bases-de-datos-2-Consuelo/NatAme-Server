@@ -23,6 +23,10 @@ import negocio.modelos.Producto;
  */
 public class PedidoDAO {
 
+    public static ArrayList<Producto> getProductos(String user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private String mensaje = "";
 
     public PedidoDAO() {
@@ -54,6 +58,42 @@ public class PedidoDAO {
         return resultado;
     }
 
+    public static ArrayList<Producto> getProductosporRegion(String k_usuario){
+        
+        String query = null;
+        if("CLIENTE".equals(UsuarioDAO.getTipoUsuario(k_usuario))){
+            query = "SELECT * FROM PRODUCTO";
+        }
+        if("REP_VENTAS".equals(UsuarioDAO.getTipoUsuario(k_usuario))){
+            query = "SELECT * FROM PRODUCTO p, INVENTARIO I, REPRESENTANTE_VENTAS r \n" +
+                        "WHERE p.k_producto  = i.k_producto  AND\n" +
+                        "i.k_region = r.k_region AND i.k_pais = r.k_region\n" +
+                        "AND r.k_representante = '"+k_usuario+"'";
+        }
+        
+        ArrayList<Producto> resultado = new ArrayList<>();
+
+        Connection conn = Conexion.getConnection();
+        try {
+            PreparedStatement psQuery = conn.prepareStatement(query);
+            ResultSet productos = psQuery.executeQuery();
+
+            while (productos.next()) {
+                int k_producto = productos.getInt(1);
+                int k_categoria = productos.getInt(2);
+                String n_nombre = productos.getString(3);
+                String n_descripcion = productos.getString(4);
+                Producto p = new Producto(k_producto, k_categoria, n_nombre, n_descripcion);
+
+                resultado.add(p);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+    
     public String guardarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String region, String pais) {
 
         PreparedStatement pstPedido = null;

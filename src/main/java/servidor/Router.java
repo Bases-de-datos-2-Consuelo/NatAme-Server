@@ -6,6 +6,7 @@
 package servidor;
 
 import DAO.PedidoDAO;
+import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class Router extends HttpServlet {
                 request.getRequestDispatcher("crear-cliente.jsp").forward(request, response);
                 break;
             case "crear-pedido":
-                ArrayList<Producto> productos=PedidoDAO.getProductos();
+                ArrayList<Producto> productos=PedidoDAO.getProductosporRegion(Conexion.user);
                 request.setAttribute("productos", productos);
                 request.getRequestDispatcher("crear-pedido.jsp").forward(request, response);
                 break;
