@@ -32,6 +32,18 @@
         <servlet-name>AgregarCliente</servlet-name>
         <servlet-class>servidor.AgregarCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletHTML</servlet-name>
+        <servlet-class>servidor.ServletHTML</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>servidor.Home</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Router</servlet-name>
+        <servlet-class>servidor.Router</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServidorPrueba</servlet-name>
         <url-pattern>/ServidorPrueba</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>AgregarCliente</servlet-name>
         <url-pattern>/agregar-cliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletHTML</servlet-name>
+        <url-pattern>/ServletHTML</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Router</servlet-name>
+        <url-pattern>/router</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

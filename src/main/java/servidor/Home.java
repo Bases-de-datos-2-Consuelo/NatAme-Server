@@ -5,13 +5,8 @@
  */
 package servidor;
 
-import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asus
  */
-public class Login extends HttpServlet {
+public class Home extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,32 +29,10 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin", "*");
-
-        String user = request.getParameter("user");
-        String password = request.getParameter("password");
-
-        Conexion.user = user;
-        Conexion.password = password;
-        Conexion.getConnection();
-
-        if (Conexion.n != 0) {
-            System.out.println("n" + Conexion.n);
-            //response.sendRedirect("http://127.0.0.1:5500/Menu.html");
-            request.setAttribute("nombre", Conexion.user);
-            request.getRequestDispatcher("menu.jsp").forward(request, response);
-          
-        } else {
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("[");
-                out.println("{");
-                out.println("\"respuesta \": \"" + "No se pudo iniciar sesión" + '"'); 
-                out.println("}");
-                out.println("]");
-
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

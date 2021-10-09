@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins','sans-serif';
+}
+
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgb(230, 234, 239 );
+
+}
+label {
+    font-weight: bold;
+    margin: .5rem 0;
+}
+p{
+    font-size: 1em;
+	margin-top: 0.5em;
+	color:rgba(6, 22, 37 );
+	font-weight: bold;
+}
+.containerLogin{
+	background: rgb(80, 143, 205);
+	width: 350px;
+	height: 450px;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	color: white;
+	padding: 2em;
+}
+
+
+.row {
+    margin: 1rem 0;
+}
+
+.heading {
+	font-size: 2em;
+	margin-top: 0.5em;
+	color:rgba(6, 22, 37 );
+	font-weight: bold;
+}
+.box{
+	margin: 0.2em 0;
+}
+.containerLogin .box p{
+	color:rgba(6, 22, 37 );
+	font-weight: bold;
+}
+.containerLogin .box div{
+	position: relative;
+	width: 100%;
+	height: 40px;
+	margin: 0.5em 0;
+
+}
+.containerLogin .box input{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgb(202, 218, 234);
+	color: black;
+	border: none;
+	outline: none;
+	padding-left: 0.8em;
+	border-radius: 10px;
+	transition: all .4s;
+
+}
+
+.containerLogin .box div::before{
+	content: '';
+	position: absolute;
+	top: 10%;
+	left: 40%
+	transform:translate(-40%,-40%);
+	width: 102%;
+	height: 106%;
+	border-radius: 10px;
+	background: linear-gradient(to right, #ff416c,#ff4b2b)
+
+
+}
+.btnLogin{
+	width: 102%;
+	height:40%;
+	border: none;
+	border-radius: 10px;
+	margin: 0.5em 0;
+	transform: translate(-1%);
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+	background: linear-gradient(to right, #ff416c,#ff4b2b);
+	transition: all .4s;
+}
+
+
+
+.btnLogin{
+	width: 102%;
+	height : 40%;
+	border: none;
+	border-radius: 10px;
+	margin: 0.5em 0;
+	transform: translate(-1%);
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+	background: linear-gradient(to right, #ff416c,#ff4b2b);
+	transition: all .4s;
+
+
+}
+.btnLogin:hover{
+	top:-5px;
+	left: -5px;
+	box-shadow: 10px 10px 0px #EE91A4;
+}
