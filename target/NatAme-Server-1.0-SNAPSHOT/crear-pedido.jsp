@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@page import="negocio.modelos.Producto" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,6 +19,18 @@
         <title>JSP Page</title>
     </head>
     <body>
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="container">
             <h2 class="text-primary">Realizar un pedido</h2>
             <form action="http://localhost:8083/NatAme-Server/agregar-pedido">
@@ -24,11 +38,14 @@
                     <div class="form-group">
                         <label for="">Selecciona los productos</label>
                         <select class="form-control" name="K_PRODUCTO" id="" multiple>
-                            <option value="1">Lavado en Seco Greenmag 850ML</option>
-                            <option value="2">Filtro Atrapa Motas Lavadoras</option>
-                            <option value="3">Detergente Dersa 4000 Ml</option>
-                            <option value="4">Gano Cereal MM </option>
-                            <option value="5">Barras Tosh Yogurt 16pl 186 .</option>
+
+                            <c:forEach var="p" items="${productos}">
+                                
+                                 <option value="${p.getK_PRODUCTO()}">${p.getN_NOMBRE()} </option>
+                            </c:forEach>
+
+                           
+                           
                         </select>
                     </div>
                 </div>

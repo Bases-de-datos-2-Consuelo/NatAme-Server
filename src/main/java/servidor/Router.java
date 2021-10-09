@@ -5,12 +5,15 @@
  */
 package servidor;
 
+import DAO.PedidoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import negocio.modelos.Producto;
 
 /**
  *
@@ -39,6 +42,8 @@ public class Router extends HttpServlet {
                 request.getRequestDispatcher("crear-cliente.jsp").forward(request, response);
                 break;
             case "crear-pedido":
+                ArrayList<Producto> productos=PedidoDAO.getProductos();
+                request.setAttribute("productos", productos);
                 request.getRequestDispatcher("crear-pedido.jsp").forward(request, response);
                 break;
         }

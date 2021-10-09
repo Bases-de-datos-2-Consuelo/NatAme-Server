@@ -11,7 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.modelos.Pedido;
+import negocio.modelos.Producto;
 
 /**
  *
@@ -25,12 +29,37 @@ public class PedidoDAO {
 
     }
 
-    public String guardarPedido(Connection conn, Pedido pedido, String[] productos,String tipo_pago, String region, String pais) {
+    public static ArrayList<Producto> getProductos() {
+        String query = "SELECT * FROM PRODUCTO";
+        ArrayList<Producto> resultado = new ArrayList<Producto>();
+
+        Connection conn = Conexion.getConnection();
+        try {
+            PreparedStatement psQuery = conn.prepareStatement(query);
+            ResultSet productos = psQuery.executeQuery();
+
+            while (productos.next()) {
+                int k_producto = productos.getInt(1);
+                int k_categoria = productos.getInt(2);
+                String n_nombre = productos.getString(3);
+                String n_descripcion = productos.getString(4);
+                Producto p = new Producto(k_producto, k_categoria, n_nombre, n_descripcion);
+
+                resultado.add(p);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
+    public String guardarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String region, String pais) {
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
 
-        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','"+tipo_pago+"',NULL,NULL,'rep123','usercli')";
+        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','" + tipo_pago + "',NULL,NULL,'rep123','usercli')";
 
         //System.out.println(sqlPedido);
         try {
@@ -84,7 +113,7 @@ public class PedidoDAO {
             String sqlInventario = null;
             if (generated.next()) {
                 int K_PEDIDO = generated.getInt(1);
-                for (int i = 0; i < productos.length; i++) { 
+                for (int i = 0; i < productos.length; i++) {
 
                     sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + Integer.parseInt(region) + "," + Integer.parseInt(pais) + ",2)";
                     //System.out.println(sqlProducto);

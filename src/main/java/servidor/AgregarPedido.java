@@ -45,7 +45,7 @@ public class AgregarPedido extends HttpServlet {
         //Conexion c = new Conexion("admin1", "admin1"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
 //        Conexion.user=user;
 //        Conexion.password=password;
-        Connection co = Conexion.getConnection();
+/*        Connection co = Conexion.getConnection();
 
         String[] productos = request.getParameterValues("K_PRODUCTO");
         String estado = request.getParameter("ESTADO_PEDIDO");
@@ -63,12 +63,12 @@ public class AgregarPedido extends HttpServlet {
         } else {
             respuesta = pedDAO.pagarPedido(co, pedido, productos, tipo_pago, calificacion, Conexion.user, regional, pais);
         }
-
+*/
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("[");
             out.println("{");
-            out.println("\"respuesta\": \"" + respuesta + '"');
+            out.println("\"respuesta\": \"" + "respuesta" + '"');
             out.println("}");
             out.println("]");
 
