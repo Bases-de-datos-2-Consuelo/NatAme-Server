@@ -40,12 +40,11 @@
                         <select class="form-control" name="K_PRODUCTO" id="" multiple>
 
                             <c:forEach var="p" items="${productos}">
-                                
-                                 <option value="${p.getK_PRODUCTO()}">${p.getN_NOMBRE()} </option>
+                                <option value="${p.getK_PRODUCTO()}">${p.getN_NOMBRE()} </option>
                             </c:forEach>
 
-                           
-                           
+
+
                         </select>
                     </div>
                 </div>
