@@ -77,7 +77,7 @@ public class AgregarCliente extends HttpServlet {
         CallableStatement cs = null;
 
         //Se realiza la llamada a la funcion de BBDD que retornará un String
-        cs = connection.prepareCall("{? = call NATAME.FU_AGREGAR_CLIENTE(?,?,?,?,?,?,?,?,?,?,?)}");
+        cs = connection.prepareCall("{? = call NATAME.FU_AGREGAR_CLIENTE(?,?,?,?,?,?,?,?,?,?,?,?)}");
 
         cs.registerOutParameter(1, Types.VARCHAR); //se indica el objeto de salida y la posición, en este caso un String.
         cs.setString(2, K_CLIENTE);
@@ -91,6 +91,7 @@ public class AgregarCliente extends HttpServlet {
         cs.setString(10, N_CORREO);
         cs.setString(11, I_GENERO);
         cs.setString(12, F_NACIMIENTO);
+        cs.setString(13, Conexion.user);
 
         cs.execute(); //ejecuta la llamada y retorna un boolean, se puede usar también executeUpdate() que retorna un entero.
 
