@@ -67,7 +67,7 @@ public class PedidoDAO {
         if("REP_VENTAS".equals(UsuarioDAO.getTipoUsuario(k_usuario))){
             query = "SELECT * FROM PRODUCTO p, INVENTARIO I, REPRESENTANTE_VENTAS r \n" +
                         "WHERE p.k_producto  = i.k_producto  AND\n" +
-                        "i.k_region = r.k_region AND i.k_pais = r.k_region\n" +
+                        "i.k_region = r.k_region AND i.k_pais = r.k_pais\n" +
                         "AND r.k_representante = '"+k_usuario+"'";
         }
         
@@ -94,12 +94,12 @@ public class PedidoDAO {
         return resultado;
     }
     
-    public String guardarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String region, String pais) {
+    public String guardarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, int region, int pais, String calificacion, String k_cliente) {
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
 
-        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PENDIENTE','" + tipo_pago + "',NULL,NULL,'rep123','usercli')";
+        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL,CURRENT_DATE,'PENDIENTE', "+calificacion+", '"+k_cliente+"')";
 
         //System.out.println(sqlPedido);
         try {
@@ -115,7 +115,7 @@ public class PedidoDAO {
                 //System.out.println(K_PEDIDO + " " + productos.length);
                 for (int i = 0; i < productos.length; i++) {
 
-                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + Integer.parseInt(region) + "," + Integer.parseInt(pais) + ",2)";
+                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + region + "," + pais + ",2)";
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
                 }
@@ -127,13 +127,13 @@ public class PedidoDAO {
             return "Guardado correctamente.";
 
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("ERROR EN GUARDAR PEDIDO "+ e);
             return e.getMessage();
         }
 
     }
 
-    public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua, String region, String pais) {
+    public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua, int region, int pais, String calificacion, String k_cliente) {
 
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
@@ -155,7 +155,7 @@ public class PedidoDAO {
                 int K_PEDIDO = generated.getInt(1);
                 for (int i = 0; i < productos.length; i++) {
 
-                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + Integer.parseInt(region) + "," + Integer.parseInt(pais) + ",2)";
+                    sqlProducto = "INSERT INTO NATAME.ITEM VALUES(" + K_PEDIDO + "," + productos[i] + ", " + region + "," + pais + ",2)";
                     //System.out.println(sqlProducto);
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();

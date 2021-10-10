@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.modelos.Cliente;
@@ -21,6 +22,33 @@ import negocio.modelos.Usuario;
  * @author asus
  */
 public class RepresentanteVentasDAO {
+
+    public static ArrayList<Cliente> getClientes(String k_usuario) {
+        
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try {
+            String query = " select c.k_cliente, c.n_nombre1, c.n_apellido1 from cliente c, representante_ventas re, referido rf WHERE re.k_representante = rf.k_representante AND rf.k_cliente = c.k_cliente AND re.k_representante = '"+k_usuario+"' AND rf.f_final IS null";
+            
+            
+            PreparedStatement stPet =  Conexion.getConnection().prepareStatement(query);
+            ResultSet result = stPet.executeQuery();
+            while(result.next()){
+                String k_cliente = result.getString(1);
+                String n_nombre1 = result.getString(2);
+                String n_apellido1 = result.getString(3);
+                Cliente c = new Cliente(k_cliente, n_nombre1, n_apellido1);
+                clientes.add(c);
+                System.out.println("CLIENTE "+ c.getK_CLIENTE());
+            }
+            
+           
+        } catch (SQLException ex) {
+            System.out.println("ERROR EN GETCLIENTES: "+ ex);
+           
+        }
+         
+         return clientes;
+    }
 
     private String mensaje = "";
 
@@ -77,18 +105,31 @@ public class RepresentanteVentasDAO {
         }
     }
 
-    public static int[] getRegionPais(Connection conn, String k_representante) throws SQLException{
+    public static int[] getRegionPais(Connection conn, String k_representante) {
         
-        String query = "SELECT K_REGION, K_PAIS FROM REPRESENTANTE_VENTAS WHERE K_REPRESENTANTE ='"+k_representante+"'";
         int[] regional = {1, 1};
-        
-        PreparedStatement stPet =  conn.prepareStatement(query);
-        ResultSet result = stPet.executeQuery();
-        while(result.next()){
-            regional[0] = result.getInt(1);
-            regional[1] = result.getInt(2);
+        try {
+            String query="";
+            if ("CLIENTE".equals(Conexion.tipo)){
+                query = "SELECT * FROM CLIENTE c, REPRESENTANTE_vENTAS re, REFERIDO rf WHERE c.k_cliente = rf.k_cliente AND re.k_representante = rf.k_representante AND re.k_representante = '"+k_representante+"'";
+            }
+            if(Conexion.tipo.equals("REP_VENTA")){
+                query = "SELECT K_REGION, K_PAIS FROM REPRESENTANTE_VENTAS WHERE K_REPRESENTANTE ='"+k_representante+"'";
+            }
+            
+            
+            
+            PreparedStatement stPet =  conn.prepareStatement(query);
+            ResultSet result = stPet.executeQuery();
+            while(result.next()){
+                regional[0] = result.getInt(1);
+                regional[1] = result.getInt(2);
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RepresentanteVentasDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return regional;
     }
     

@@ -36,6 +36,12 @@ public class Cliente {
         this.I_GENERO = I_GENERO;
         this.F_NACIMIENTO = F_NACIMIENTO;
     }
+    
+    public Cliente(String K_CLIENTE, String N_NOMBRE1, String N_APELLIDO1){
+        this.K_CLIENTE = K_CLIENTE;
+        this.N_NOMBRE1 = N_NOMBRE1;
+        this.N_APELLIDO1 = N_APELLIDO1;
+    }
 
     public String getK_CLIENTE() {
         return K_CLIENTE;

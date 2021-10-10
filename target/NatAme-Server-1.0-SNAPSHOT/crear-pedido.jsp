@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page import="negocio.modelos.Producto" %>
+<%@page import="conexion.Conexion" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,15 +21,8 @@
     </head>
     <body>
 
-
-
-
-
-
-
-
-
-
+        
+       USUARIO ${usuario}
 
 
         <div class="container">
@@ -84,8 +78,12 @@
                 <h5 class="text-danger">Estos campos son provisionales y posteriormente se quitarán</h5>
                 <div class="row">
                     <div class="col">
-                        <select name="K_REGION">
-                            <option value="1">Caribe</option>
+                        <select name="K_CLIENTE">
+                            <c:forEach var="c" items="${clientes}">
+                                <option value="${c.getK_CLIENTE()}">${c.getN_NOMBRE1()} ${c.getN_APELLIDO1()}</option>
+                            </c:forEach>
+                            
+                            
                             <option value="2">Pacífico</option>
                             <option value="3">Andina</option>
                             <option value="4">Llanos orientales</option>

@@ -6,6 +6,8 @@
 package servidor;
 
 import DAO.PedidoDAO;
+import DAO.RepresentanteVentasDAO;
+import DAO.UsuarioDAO;
 import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,34 +50,27 @@ public class AgregarPedido extends HttpServlet {
         //Conexion c = new Conexion("admin1", "admin1"); //Provicionalmente pongo valores quemados, pero ya trae el user y password de un formualrio
 //        Conexion.user=user;
 //        Conexion.password=password;
-/*        Connection co = Conexion.getConnection();
+        Connection co = Conexion.getConnection();
 
         String[] productos = request.getParameterValues("K_PRODUCTO");
         String estado = request.getParameter("ESTADO_PEDIDO");
         String tipo_pago = request.getParameter("I_TIPO_PAGO");
         String calificacion = request.getParameter("Q_CALIFICACION");
-        String regional = request.getParameter("K_REGION");
-        String pais = request.getParameter("K_PAIS");
+        String K_CLIENTE = request.getParameter("K_CLIENTE");
+        //String regional = request.getParameter("K_REGION");
+        //String pais = request.getParameter("K_PAIS");
 
         Pedido pedido = new Pedido();
         PedidoDAO pedDAO = new PedidoDAO();
 
         if (estado.equals("GUARDAR")) {
-            respuesta = pedDAO.guardarPedido(co, pedido, productos,tipo_pago, regional, pais);
+            respuesta = pedDAO.guardarPedido(co, pedido, productos,tipo_pago, RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user)[0], RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user)[1], calificacion, K_CLIENTE);
 
         } else {
-            respuesta = pedDAO.pagarPedido(co, pedido, productos, tipo_pago, calificacion, Conexion.user, regional, pais);
+            respuesta = pedDAO.pagarPedido(co, pedido, productos, tipo_pago, calificacion, Conexion.user, RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user)[0], RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user)[1], calificacion, K_CLIENTE);
         }
-*/
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("[");
-            out.println("{");
-            out.println("\"respuesta\": \"" + "respuesta" + '"');
-            out.println("}");
-            out.println("]");
 
-        }
+        request.getRequestDispatcher("crear-pedido.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

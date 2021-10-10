@@ -6,6 +6,7 @@
 package servidor;
 
 import DAO.PedidoDAO;
+import DAO.RepresentanteVentasDAO;
 import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import negocio.modelos.Cliente;
 import negocio.modelos.Producto;
 
 /**
@@ -44,7 +46,10 @@ public class Router extends HttpServlet {
                 break;
             case "crear-pedido":
                 ArrayList<Producto> productos=PedidoDAO.getProductosporRegion(Conexion.user);
+                ArrayList<Cliente> clientes = RepresentanteVentasDAO.getClientes(Conexion.user);
                 request.setAttribute("productos", productos);
+                request.setAttribute("clientes", clientes);
+                request.setAttribute("usuario", Conexion.user);
                 request.getRequestDispatcher("crear-pedido.jsp").forward(request, response);
                 break;
             case "cerrar-sesion":                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
