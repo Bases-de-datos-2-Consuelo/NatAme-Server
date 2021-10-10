@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
     <head> 
@@ -135,6 +137,12 @@
 
                 <button type="submit" class="btn btn-outline-success my-3">Crear representante</button>
             </form>
+
+            
+
+            <div class="alert alert-success" role="alert">
+                ${mensaje}
+            </div>
 
         </div>
     </body>

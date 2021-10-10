@@ -44,9 +44,8 @@ public class AgregarRepresentante extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin", "*");
 
         String K_REPRESENTANTE = request.getParameter("K_REPRESENTANTE");
-        String K_REGION = request.getParameter("K_REGION");
-        String K_PAIS = request.getParameter("K_PAIS");
-        String K_REPRESENTANTE_SUPERIOR = request.getParameter("K_REPRESENTANTE_SUPERIOR");
+        int[] REGIONAL = RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user);
+        String K_REPRESENTANTE_SUPERIOR = Conexion.user;
         String N_NOMBRE1 = request.getParameter("N_NOMBRE1");
         String N_NOMBRE2 = request.getParameter("N_NOMBRE2");
         String N_APELLIDO1 = request.getParameter("N_APELLIDO1");
@@ -60,21 +59,21 @@ public class AgregarRepresentante extends HttpServlet {
         String fecha[] = F_NACIMIENTO.split("-");
         F_NACIMIENTO = fecha[2] + '-' + fecha[1] + '-' + fecha[0];
         String N_TELEFONO = request.getParameter("N_TELEFONO");
-//        System.out.println(K_REPRESENTANTE);
-//        System.out.println(K_REGION);
-//        System.out.println(K_PAIS);
-//        System.out.println(K_REPRESENTANTE_SUPERIOR);
-//        System.out.println(N_NOMBRE1);
-//        System.out.println(N_NOMBRE2);
-//        System.out.println(N_APELLIDO1);
-//        System.out.println(N_APELLIDO2);
-//        System.out.println(I_TIPO_DOCUMENTO);
-//        System.out.println(Q_DOCUMENTO);
-//        System.out.println(N_DIRECCION);
-//        System.out.println(N_CORREO);
-//        System.out.println(I_GENERO);
-//        System.out.println(F_NACIMIENTO);
-//        System.out.println(N_TELEFONO);
+        System.out.println(K_REPRESENTANTE);
+        System.out.println(REGIONAL[0]);
+        System.out.println(REGIONAL[1]);
+        System.out.println(K_REPRESENTANTE_SUPERIOR);
+        System.out.println(N_NOMBRE1);
+        System.out.println(N_NOMBRE2);
+        System.out.println(N_APELLIDO1);
+        System.out.println(N_APELLIDO2);
+        System.out.println(I_TIPO_DOCUMENTO);
+        System.out.println(Q_DOCUMENTO);
+        System.out.println(N_DIRECCION);
+        System.out.println(N_CORREO);
+        System.out.println(I_GENERO);
+        System.out.println(F_NACIMIENTO);
+        System.out.println(N_TELEFONO);
 
         // response.sendRedirect("https://www.it-swarm-es.com/es/java/llamar-una-funcion-de-oracle-desde-java/1068792680/");
         //String user = request.getParameter("user");
@@ -88,8 +87,8 @@ public class AgregarRepresentante extends HttpServlet {
 
         cs.registerOutParameter(1, Types.VARCHAR); //se indica el objeto de salida y la posición, en este caso un String.
         cs.setString(2, K_REPRESENTANTE);
-        cs.setString(3, K_REGION);
-        cs.setString(4, K_PAIS);
+        cs.setInt(3, REGIONAL[0]);
+        cs.setInt(4, REGIONAL[1]);
         cs.setString(5, K_REPRESENTANTE_SUPERIOR);
         cs.setString(6, N_NOMBRE1);
         cs.setString(7, N_NOMBRE2);
@@ -107,7 +106,7 @@ public class AgregarRepresentante extends HttpServlet {
 
         //se recupera el resultado de la funcion pl/sql
         String retorno = cs.getString(1);
-
+        System.out.println("RETORNO "+ retorno);
         if (retorno.equalsIgnoreCase("ok")) {
             PreparedStatement pstUser = null;
             String sqlUser = "CREATE USER " + K_REPRESENTANTE + " IDENTIFIED BY " + K_REPRESENTANTE + " DEFAULT TABLESPACE usernatdef temporary tablespace usernattmp quota 2m on usernatdef";
@@ -121,17 +120,16 @@ public class AgregarRepresentante extends HttpServlet {
             pstGrant = connection.prepareStatement(sqlGrant);
             pstGrant.execute();
             pstGrant.close();
-
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("[");
-                out.println("{");
-                out.println("\"respuesta\": \"" + retorno + '"');
-                out.println("}");
-                out.println("]");
-
-            }
+            request.setAttribute("mensaje", retorno);
+            request.getRequestDispatcher("crear-rep-venta.jsp").forward(request, response);
+            
+        }else{
+            request.setAttribute("mensaje", retorno);
+            request.getRequestDispatcher("crear-rep-venta.jsp").forward(request, response);
         }
+        
+        
+        
     }
 
     @Override

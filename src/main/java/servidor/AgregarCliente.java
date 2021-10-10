@@ -114,15 +114,8 @@ public class AgregarCliente extends HttpServlet {
             pstGrant.close();
         }
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("[");
-            out.println("{");
-            out.println("\"respuesta\": \"" + retorno + '"');
-            out.println("}");
-            out.println("]");
-
-        }
+        request.setAttribute("mensaje", retorno);
+        request.getRequestDispatcher("crear-cliente.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

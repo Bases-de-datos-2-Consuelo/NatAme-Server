@@ -5,8 +5,10 @@
  */
 package DAO;
 
+import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,6 +77,21 @@ public class RepresentanteVentasDAO {
         }
     }
 
+    public static int[] getRegionPais(Connection conn, String k_representante) throws SQLException{
+        
+        String query = "SELECT K_REGION, K_PAIS FROM REPRESENTANTE_VENTAS WHERE K_REPRESENTANTE ='"+k_representante+"'";
+        int[] regional = {1, 1};
+        
+        PreparedStatement stPet =  conn.prepareStatement(query);
+        ResultSet result = stPet.executeQuery();
+        while(result.next()){
+            regional[0] = result.getInt(1);
+            regional[1] = result.getInt(2);
+        }
+        
+        return regional;
+    }
+    
     public String modificarCliente(Connection conn, Cliente cliente) {
         return mensaje;
     }
