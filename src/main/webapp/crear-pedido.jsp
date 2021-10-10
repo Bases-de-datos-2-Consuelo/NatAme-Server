@@ -98,6 +98,13 @@
                 </div>
                 <button type="submit" class="btn btn-outline-success my-3">Enviar</button>
             </form>
+       
+            <div class="alert alert-success" role="alert">
+                ${mensaje}
+            </div>
+        
         </div>
+       
+       
     </body>
 </html>

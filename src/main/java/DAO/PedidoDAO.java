@@ -128,20 +128,20 @@ public class PedidoDAO {
 
         } catch (SQLException e) {
             System.out.println("ERROR EN GUARDAR PEDIDO "+ e);
-            return e.getMessage();
+            return "ERROR EN GUARDAR PEDIDO " +e.getMessage();
         }
 
     }
 
     public String pagarPedido(Connection conn, Pedido pedido, String[] productos, String tipo_pago, String nota, String usua, int region, int pais, String calificacion, String k_cliente) {
 
+        System.out.println("LLEGAN REGION  Y PAIS "+region +", " +pais);
         PreparedStatement pstPedido = null;
         PreparedStatement pstProductos = null;
         PreparedStatement pstActualizarPedido = null;
         PreparedStatement pstInventario = null;
 
-        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL, 0.1,CURRENT_DATE,'PAGADO','" + tipo_pago + "','" + Integer.parseInt(nota) + "',NULL,'rep123','usercli')";
-
+        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL,CURRENT_DATE,'PAGADO', "+calificacion+", '"+k_cliente+"')";
         //System.out.println(sqlPedido);
         try {
 
@@ -160,26 +160,30 @@ public class PedidoDAO {
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
 
-                    sqlInventario = "UPDATE inventario i SET i.Q_STOCK =i.Q_STOCK - 2 WHERE i.K_PRODUCTO=2 AND i.K_REGION=1 AND i.K_PAIS =1";
+                    sqlInventario = "UPDATE inventario i SET i.Q_STOCK =i.Q_STOCK - 2 WHERE i.K_PRODUCTO=2 AND i.K_REGION="+region+" AND i.K_PAIS ="+pais+"";
 
 //                    pstInventario = conn.prepareStatement(sqlInventario);
 //                    pstInventario.execute();
                 }
-                String sqlPago = "UPDATE PEDIDO "
+                
+                String sqlPago = "INSERT INTO PAGO VALUES ("+K_PEDIDO+", CURRENT_DATE, "+tipo_pago+" , 0.1)";
+                String sqlPago2 = "UPDATE PAGO "
                         + "SET V_TOTAL=(SELECT sum(i.Q_CANTIDAD *p.V_VALOR ) TOTAL FROM item i,PRODUCTO p"
                         + "			WHERE i.K_PRODUCTO=p.K_PRODUCTO "
                         + "			),"
                         //+ "I_ESTADO='PAGADO',"
                         //+ "I_TIPO_PAGO='" + tipo_pago + "',"
                         //+ "Q_CALIFICACION=" + Integer.parseInt(nota) + ","
-                        + "F_FECHA_PAGO=CURRENT_DATE "
+                        + "F_FECHA_REALIZADO= CURRENT_DATE "
                         //+ "K_REALIZADO_PARA=" + usua + "'"
                         + "WHERE K_PEDIDO =" + K_PEDIDO;
                 //System.out.println(sqlPago);
                 pstActualizarPedido = conn.prepareStatement(sqlPago);
                 pstActualizarPedido.execute();
                 pstActualizarPedido.close();
-
+                pstActualizarPedido = conn.prepareStatement(sqlPago2);
+                pstActualizarPedido.execute();
+                pstActualizarPedido.close();
                 pstProductos.close();
 //                pstInventario.close();
 

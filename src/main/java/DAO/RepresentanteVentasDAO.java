@@ -108,12 +108,13 @@ public class RepresentanteVentasDAO {
     public static int[] getRegionPais(Connection conn, String k_representante) {
         
         int[] regional = {1, 1};
+        System.out.println("TIPO EN CONEXION "+Conexion.tipo);
         try {
             String query="";
             if ("CLIENTE".equals(Conexion.tipo)){
                 query = "SELECT * FROM CLIENTE c, REPRESENTANTE_vENTAS re, REFERIDO rf WHERE c.k_cliente = rf.k_cliente AND re.k_representante = rf.k_representante AND re.k_representante = '"+k_representante+"'";
             }
-            if(Conexion.tipo.equals("REP_VENTA")){
+            if(Conexion.tipo.equals("REP_VENTAS")){
                 query = "SELECT K_REGION, K_PAIS FROM REPRESENTANTE_VENTAS WHERE K_REPRESENTANTE ='"+k_representante+"'";
             }
             
@@ -128,8 +129,9 @@ public class RepresentanteVentasDAO {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(RepresentanteVentasDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR OBTENIENDO REGIONAL DE USUARIO "+ ex);
         }
+        System.out.println("REGIONAL "+regional);
         return regional;
     }
     

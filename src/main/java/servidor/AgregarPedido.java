@@ -70,6 +70,7 @@ public class AgregarPedido extends HttpServlet {
             respuesta = pedDAO.pagarPedido(co, pedido, productos, tipo_pago, calificacion, Conexion.user, RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user)[0], RepresentanteVentasDAO.getRegionPais(Conexion.getConnection(), Conexion.user)[1], calificacion, K_CLIENTE);
         }
 
+        request.setAttribute("mensaje", respuesta);
         request.getRequestDispatcher("crear-pedido.jsp").forward(request, response);
     }
 
