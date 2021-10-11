@@ -27,6 +27,7 @@ negocio\modelos\Producto.class
 negocio\modelos\Item.class
 negocio\modelos\Pais.class
 DAO\PedidoDAO.class
+servidor\PromedioRepresentante.class
 negocio\modelos\Clasificacion.class
 servidor\AgregarCliente.class
 servidor\Home.class

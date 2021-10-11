@@ -49,5 +49,19 @@
     
          </div>
          
+    
+    <hr>
+    
+    <form action="PromedioRepresentante">
+            <div class="form-group">
+                            <label for="">Promedio de un representante</label>
+                            <input class="form-control" name="K_REPRESENTANTE_VENTAS" type="text" value="">
+            </div>
+            
+            <button type="submit" class="btn btn-outline-success my-3">Obtener promedio</button>
+     </form>
+    
+    ${promedio}
+    
     </body>
 </html>

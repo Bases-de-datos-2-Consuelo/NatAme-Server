@@ -6,10 +6,12 @@
 package DAO;
 
 import conexion.Conexion;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +50,31 @@ public class RepresentanteVentasDAO {
         }
          
          return clientes;
+    }
+
+    public static String getPromedio(String k_rep) {
+        
+        
+        String promedio = null;
+        try {
+            
+            Connection connection = Conexion.getConnection();
+            CallableStatement cs = null;
+            
+            
+            cs = connection.prepareCall("{call NATAME.PR_PROMEDIO_CALIFICACION_REP(?, ?, ?, ?)}");
+            cs.setString(1, "01-01-2020");
+            cs.setString(2, "12-31-2021");
+            cs.setString(3, k_rep);
+            cs.registerOutParameter(4, Types.VARCHAR);
+            cs.execute();
+            promedio = cs.getString(4);
+            System.out.println("PROMEDIO "+promedio);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RepresentanteVentasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return promedio;
     }
 
     private String mensaje = "";
