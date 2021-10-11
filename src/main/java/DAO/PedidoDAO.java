@@ -6,11 +6,13 @@
 package DAO;
 
 import conexion.Conexion;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -159,31 +161,26 @@ public class PedidoDAO {
                     //System.out.println(sqlProducto);
                     pstProductos = conn.prepareStatement(sqlProducto);
                     pstProductos.execute();
-
-                    sqlInventario = "UPDATE inventario i SET i.Q_STOCK =i.Q_STOCK - 2 WHERE i.K_PRODUCTO=2 AND i.K_REGION="+region+" AND i.K_PAIS ="+pais+"";
-
-//                    pstInventario = conn.prepareStatement(sqlInventario);
-//                    pstInventario.execute();
                 }
                 
-                String sqlPago = "INSERT INTO PAGO VALUES ("+K_PEDIDO+", CURRENT_DATE, "+tipo_pago+" , 0.1)";
-                String sqlPago2 = "UPDATE PAGO "
-                        + "SET V_TOTAL=(SELECT sum(i.Q_CANTIDAD *p.V_VALOR ) TOTAL FROM item i,PRODUCTO p"
-                        + "			WHERE i.K_PRODUCTO=p.K_PRODUCTO "
-                        + "			),"
-                        //+ "I_ESTADO='PAGADO',"
-                        //+ "I_TIPO_PAGO='" + tipo_pago + "',"
-                        //+ "Q_CALIFICACION=" + Integer.parseInt(nota) + ","
-                        + "F_FECHA_REALIZADO= CURRENT_DATE "
-                        //+ "K_REALIZADO_PARA=" + usua + "'"
-                        + "WHERE K_PEDIDO =" + K_PEDIDO;
-                //System.out.println(sqlPago);
+                
+                Connection connection = Conexion.getConnection();
+                CallableStatement cs = null;
+
+            //Se realiza la llamada a la funcion de BBDD que retornará un String
+                cs = connection.prepareCall("{? = call NATAME.FU_CALCULAR_TOTAL_PEDIDO(?)}");
+                cs.registerOutParameter(1, Types.NUMERIC); //se indica el objeto de salida y la posición, en este caso un String.
+                cs.setInt(2, K_PEDIDO);
+                cs.execute(); 
+                int retorno = cs.getInt(1);
+                System.out.println("valor retorno "+retorno);
+                String sqlPago = "INSERT INTO PAGO VALUES ("+K_PEDIDO+", CURRENT_DATE, '"+tipo_pago+"' , " +retorno+ ")";
+        
+                System.out.println(sqlPago);
                 pstActualizarPedido = conn.prepareStatement(sqlPago);
                 pstActualizarPedido.execute();
                 pstActualizarPedido.close();
-                pstActualizarPedido = conn.prepareStatement(sqlPago2);
-                pstActualizarPedido.execute();
-                pstActualizarPedido.close();
+
                 pstProductos.close();
 //                pstInventario.close();
 
