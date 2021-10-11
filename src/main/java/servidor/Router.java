@@ -7,6 +7,7 @@ package servidor;
 
 import DAO.PedidoDAO;
 import DAO.RepresentanteVentasDAO;
+import DAO.UsuarioDAO;
 import conexion.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.modelos.Cliente;
 import negocio.modelos.Producto;
+import negocio.modelos.Representante_Ventas;
 
 /**
  *
@@ -57,6 +59,13 @@ public class Router extends HttpServlet {
                 break;
             case "imprimir-factura":
                 request.getRequestDispatcher("generarFactura.jsp").forward(request, response);
+                break;
+                
+            case "cambio-representante":
+                
+                ArrayList<Representante_Ventas> reps = RepresentanteVentasDAO.getAllRepresentantes();
+                request.setAttribute("representantes", reps);
+                request.getRequestDispatcher("cambio-representante.jsp").forward(request, response);
                 break;
         }
 
@@ -100,5 +109,7 @@ public class Router extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+   
 
 }

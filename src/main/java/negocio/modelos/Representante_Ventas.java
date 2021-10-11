@@ -44,6 +44,12 @@ public class Representante_Ventas {
         this.N_TELEFONO = N_TELEFONO;
     }
 
+    
+    public Representante_Ventas(String K_REPRESENTANTE, String N_NOMBRE1, String N_APELIIDO1){
+        this.K_REPRESENTANTE=K_REPRESENTANTE;
+        this.N_NOMBRE1 = N_NOMBRE1;
+        this.N_APELLIDO1 = N_APELIIDO1;
+    }
     public String getK_REPRESENTANTE() {
         return K_REPRESENTANTE;
     }

@@ -21,6 +21,7 @@ servidor\ServletHTML.class
 negocio\modelos\Usuario.class
 negocio\modelos\Inventario.class
 servidor\AgregarRepresentante.class
+servidor\cambioRepresentante.class
 servidor\Logout.class
 com\servidor\natame\server\JAXRSConfiguration.class
 negocio\modelos\Producto.class

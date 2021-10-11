@@ -162,6 +162,28 @@ public class RepresentanteVentasDAO {
         return regional;
     }
     
+    
+    public static ArrayList<Representante_Ventas> getAllRepresentantes(){
+        
+        ArrayList<Representante_Ventas> reps  =new ArrayList<>();
+        try {
+            String query = "SELECT K_REPRESENTANTE, N_NOMBRE1, N_APELLIDO1 FROM REPRESENTANTE_VENTAS";
+            PreparedStatement pst = Conexion.getConnection().prepareStatement(query);
+            
+            ResultSet result = pst.executeQuery();
+            while(result.next()){
+                
+                Representante_Ventas rep = new Representante_Ventas(result.getString(1), result.getString(2), result.getString(3));
+                reps.add(rep);
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Error en get all reps "+ ex);
+        }
+        return reps;
+    }
+    
     public String modificarCliente(Connection conn, Cliente cliente) {
         return mensaje;
     }
