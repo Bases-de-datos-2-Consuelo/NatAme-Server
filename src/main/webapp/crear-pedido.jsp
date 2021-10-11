@@ -80,7 +80,7 @@
                     <div class="col">
                         <select name="K_CLIENTE">
                             <c:forEach var="c" items="${clientes}">
-                                <option value="${c.getK_CLIENTE()}">${c.getN_NOMBRE1()} ${c.getN_APELLIDO1()}</option>
+                                <option value="${c.getK_CLIENTE()}">${c.getK_CLIENTE()}  - ${c.getN_NOMBRE1()} ${c.getN_APELLIDO1()}</option>
                             </c:forEach>
                             
                             

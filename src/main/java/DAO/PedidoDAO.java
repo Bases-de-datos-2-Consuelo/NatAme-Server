@@ -143,8 +143,9 @@ public class PedidoDAO {
         PreparedStatement pstActualizarPedido = null;
         PreparedStatement pstInventario = null;
 
-        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL,CURRENT_DATE,'PAGADO', "+calificacion+", '"+k_cliente+"')";
+        String sqlPedido = "INSERT INTO NATAME.PEDIDO VALUES(NULL,CURRENT_DATE,'PENDIENTE', "+calificacion+", '"+k_cliente+"')";
         //System.out.println(sqlPedido);
+        String retornoFinal = "";
         try {
 
             pstPedido = conn.prepareStatement(sqlPedido, new String[]{"K_PEDIDO"});
@@ -175,21 +176,33 @@ public class PedidoDAO {
                 double retorno = cs.getDouble(1);
                 System.out.println("valor retorno "+retorno);
                 String sqlPago = "INSERT INTO PAGO VALUES ("+K_PEDIDO+", CURRENT_DATE, '"+tipo_pago+"' , " +retorno+ ")";
-        
+                
                 System.out.println(sqlPago);
                 pstActualizarPedido = conn.prepareStatement(sqlPago);
                 pstActualizarPedido.execute();
                 pstActualizarPedido.close();
 
-                pstProductos.close();
+               
+                //pstProductos.close();
 //                pstInventario.close();
+               
+
+            //Se realiza la llamada a la funcion de BBDD que retornará un String
+                cs = connection.prepareCall("{call NATAME.PR_BANCO(?,?,?)}");
+               
+                cs.setString(1, k_cliente);
+                cs.setInt(2, K_PEDIDO);
+                cs.registerOutParameter(3, Types.VARCHAR);
+                cs.execute(); 
+                retornoFinal = cs.getString(3);
+
 
             } else {
                 System.out.println("No entró al if");
             }
 
             pstPedido.close();
-            return "Pagado correctamente.";
+            return retornoFinal;
 
         } catch (SQLException e) {
             System.out.println(e);
