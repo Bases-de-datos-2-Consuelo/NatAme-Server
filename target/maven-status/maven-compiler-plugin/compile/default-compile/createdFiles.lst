@@ -10,6 +10,7 @@ negocio\modelos\Representante_Ventas.class
 servidor\Login.class
 servidor\Router.class
 negocio\Principal.class
+servidor\ImprimirFactura.class
 negocio\modelos\Referido.class
 servidor\AgregarPedido.class
 conexion\Conexion.class

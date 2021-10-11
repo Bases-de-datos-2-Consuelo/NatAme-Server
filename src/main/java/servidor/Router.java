@@ -55,6 +55,9 @@ public class Router extends HttpServlet {
             case "cerrar-sesion":                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                 request.getRequestDispatcher("login.jsp").forward(request, response);
                 break;
+            case "imprimir-factura":
+                request.getRequestDispatcher("generarFactura.jsp").forward(request, response);
+                break;
         }
 
     }

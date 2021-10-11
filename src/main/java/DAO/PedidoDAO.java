@@ -172,7 +172,7 @@ public class PedidoDAO {
                 cs.registerOutParameter(1, Types.NUMERIC); //se indica el objeto de salida y la posición, en este caso un String.
                 cs.setInt(2, K_PEDIDO);
                 cs.execute(); 
-                int retorno = cs.getInt(1);
+                double retorno = cs.getDouble(1);
                 System.out.println("valor retorno "+retorno);
                 String sqlPago = "INSERT INTO PAGO VALUES ("+K_PEDIDO+", CURRENT_DATE, '"+tipo_pago+"' , " +retorno+ ")";
         
@@ -195,5 +195,31 @@ public class PedidoDAO {
             System.out.println(e);
             return e.getMessage();
         }
+    }
+    
+    
+    public static String imprimirFactura(String k_pedido){
+        
+        String retorno = null;
+        try {
+            Connection connection = Conexion.getConnection();
+            CallableStatement cs = null;
+            retorno = "Hola, dentro del try";
+            
+            cs = connection.prepareCall("{call NATAME.PR_CREAR_FACTURA(?, ?, ?)}");
+            cs.setString(1, k_pedido);
+            cs.registerOutParameter(2, Types.VARCHAR);
+            cs.registerOutParameter(3, Types.VARCHAR);
+            
+            cs.execute();
+            retorno = cs.getString(2);
+            retorno += cs.getString(3);
+            System.out.println("retorno aqui!! "+ retorno);
+            return retorno;
+        } catch (SQLException ex) {
+            Logger.getLogger(PedidoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return retorno;
     }
 }

@@ -39,6 +39,7 @@
                     <li >
                         <a href="router?pagina=crear-rep-venta"><img src="https://html-online.com/img/01-interactive-connection.png" id="men" >Crear Representante</a></li>
                     <li ><a href="router?pagina=crear-pedido"><img  src="https://html-online.com/img/03-docs-to-html.png" id="men" />Realizar Pedidos</a></li>
+                    <li ><a href="router?pagina=imprimir-factura"><img  src="https://html-online.com/img/03-docs-to-html.png" id="men" />Imprimir Factura</a></li>
                     <li ><a href=""><img src="https://html-online.com/img/05-gibberish.png" id="men" />Cambio Representante</a></li>
                     <li><a href=""><img  src="https://html-online.com/img/6-table-div-html.png" id="men"  />Estadisticas</a></li>
                     <li>
