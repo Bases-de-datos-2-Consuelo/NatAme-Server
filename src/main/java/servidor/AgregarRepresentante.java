@@ -86,7 +86,7 @@ public class AgregarRepresentante extends HttpServlet {
             CallableStatement cs = null;
 
             //Se realiza la llamada a la funcion de BBDD que retornará un String
-            cs = connection.prepareCall("{? = call NATAME.FU_AGREGAR_REPVENTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            cs = connection.prepareCall("{? = call NATAME.PK_NATAME.FU_AGREGAR_REPVENTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 
             cs.registerOutParameter(1, Types.VARCHAR); //se indica el objeto de salida y la posición, en este caso un String.
             cs.setString(2, K_REPRESENTANTE);

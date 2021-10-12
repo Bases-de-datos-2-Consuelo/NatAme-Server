@@ -51,7 +51,7 @@ public class UsuarioDAO {
             CallableStatement cs = null;
 
             //Se realiza la llamada a la funcion de BBDD que retornará un String
-            cs = connection.prepareCall("{? = call NATAME.FU_TIPO_USUARIO(?)}");
+            cs = connection.prepareCall("{? = call NATAME.PK_NATAME.FU_TIPO_USUARIO(?)}");
 
             cs.registerOutParameter(1, Types.VARCHAR); //se indica el objeto de salida y la posición, en este caso un String.
             cs.setString(2, k_user);

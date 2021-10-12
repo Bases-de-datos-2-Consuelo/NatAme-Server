@@ -62,7 +62,7 @@ public class RepresentanteVentasDAO {
             CallableStatement cs = null;
             
             
-            cs = connection.prepareCall("{call NATAME.PR_PROMEDIO_CALIFICACION_REP(?, ?, ?, ?)}");
+            cs = connection.prepareCall("{call NATAME.PK_NATAME.PR_PROMEDIO_CALIFICACION_REP(?, ?, ?, ?)}");
             cs.setString(1, "01-01-2020");
             cs.setString(2, "12-31-2021");
             cs.setString(3, k_rep);

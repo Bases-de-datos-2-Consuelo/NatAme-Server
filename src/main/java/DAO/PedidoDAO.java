@@ -169,7 +169,7 @@ public class PedidoDAO {
                 CallableStatement cs = null;
 
             //Se realiza la llamada a la funcion de BBDD que retornará un String
-                cs = connection.prepareCall("{? = call NATAME.FU_CALCULAR_TOTAL_PEDIDO(?)}");
+                cs = connection.prepareCall("{? = call NATAME.PK_NATAME.FU_CALCULAR_TOTAL_PEDIDO(?)}");
                 cs.registerOutParameter(1, Types.NUMERIC); //se indica el objeto de salida y la posición, en este caso un String.
                 cs.setInt(2, K_PEDIDO);
                 cs.execute(); 
@@ -188,7 +188,7 @@ public class PedidoDAO {
                
 
             //Se realiza la llamada a la funcion de BBDD que retornará un String
-                cs = connection.prepareCall("{call NATAME.PR_BANCO(?,?,?)}");
+                cs = connection.prepareCall("{call NATAME.PK_NATAME.PR_BANCO(?,?,?)}");
                
                 cs.setString(1, k_cliente);
                 cs.setInt(2, K_PEDIDO);
@@ -219,7 +219,7 @@ public class PedidoDAO {
             CallableStatement cs = null;
             retorno = "Hola, dentro del try";
             
-            cs = connection.prepareCall("{call NATAME.PR_CREAR_FACTURA(?, ?, ?)}");
+            cs = connection.prepareCall("{call NATAME.PK_NATAME.PR_CREAR_FACTURA(?, ?, ?)}");
             cs.setString(1, k_pedido);
             cs.registerOutParameter(2, Types.VARCHAR);
             cs.registerOutParameter(3, Types.VARCHAR);
