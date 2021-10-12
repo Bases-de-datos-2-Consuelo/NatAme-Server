@@ -52,6 +52,7 @@ public class Router extends HttpServlet {
                 request.setAttribute("productos", productos);
                 request.setAttribute("clientes", clientes);
                 request.setAttribute("usuario", Conexion.user);
+                request.setAttribute("tipousuario", Conexion.tipo);
                 request.getRequestDispatcher("crear-pedido.jsp").forward(request, response);
                 break;
             case "cerrar-sesion":                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

@@ -57,7 +57,11 @@
                             <label for="">Selecciona estado de pedido</label>
                             <select class="form-control" name="ESTADO_PEDIDO" id="">
                                 <option value="GUARDAR">GUARDAR</option>
-                                <option value="PAGAR">PAGAR</option>
+                                
+                                
+                                    <option value="PAGAR">PAGAR</option>
+                                
+                                
                             </select>
                         </div>
                     </div>
@@ -84,10 +88,7 @@
                             </c:forEach>
                             
                             
-                            <option value="2">Pacífico</option>
-                            <option value="3">Andina</option>
-                            <option value="4">Llanos orientales</option>
-                            <option value="5">Amazonía</option>
+                         
                         </select>
                     </div>
                     <div class="col">

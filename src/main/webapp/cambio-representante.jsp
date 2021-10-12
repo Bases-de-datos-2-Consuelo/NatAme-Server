@@ -24,7 +24,7 @@
                             
                             <select class="form-control" name="K_REPRESENTANTE" id="">
                                 <c:forEach var="r" items="${representantes}">
-                                    <option value="${r.getK_REPRESENTANTE()}">${r.getN_NOMBRE1()} </option>
+                                    <option value="${r.getK_REPRESENTANTE()}">${r.getK_REPRESENTANTE()} - ${r.getN_NOMBRE1()} </option>
                                 </c:forEach>
                                 
                             </select>
